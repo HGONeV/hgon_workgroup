@@ -1,0 +1,28 @@
+{
+    "name": "hgon/hgon-workgroup",
+    "type": "typo3-cms-extension",
+    "description": "For managing working groups",
+    "authors": [
+        {
+            "name": "Maximilian F\u00e4\u00dfler",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "typo3/cms-core": "^8.7.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "HGON\\HgonWorkgroup\\": "Classes"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "HGON\\HgonWorkgroup\\Tests\\": "Tests"
+        }
+    },
+    "replace": {
+        "hgon_workgroup": "self.version",
+        "typo3-ter/hgon-workgroup": "self.version"
+    }
+}

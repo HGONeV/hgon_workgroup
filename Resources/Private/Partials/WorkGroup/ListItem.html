@@ -1,0 +1,14 @@
+<div class="flex-item c-<f:cObject typoscriptObjectPath='lib.math' data='12/<f:count>{row}</f:count>' />">
+    <article class="card card-plain card--border">
+        <div class="card__inner">
+            <header class="card__header">
+                <h3 class="headline">{workGroup.title}</h3>
+            </header>
+            <footer class="card__footer">
+                <f:link.action class="btn btn--rounded btn--tertiary" pageUid="{settings.showPid}" action="show" arguments="{workGroup: workGroup}">
+                    <f:translate key="tx_hgonworkgroup_template_general.findOutMore" />
+                </f:link.action>
+            </footer>
+        </div>
+    </article>
+</div>

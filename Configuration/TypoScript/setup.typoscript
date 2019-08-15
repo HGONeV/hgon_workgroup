@@ -1,0 +1,100 @@
+config.tx_extbase {
+    persistence {
+        GeorgRinger\News\Domain\Model\News.newRecordStoragePid = 60
+        classes {
+            HGON\HgonWorkgroup\Domain\Model\Event {
+                mapping {
+                    tableName = tx_rkwevents_domain_model_event
+                    recordType =
+                }
+            }
+            HGON\HgonWorkgroup\Domain\Model\Authors {
+                mapping {
+                    tableName = tx_rkwauthors_domain_model_authors
+                    recordType =
+                }
+            }
+
+            GeorgRinger\News\Domain\Model\News {
+                subclasses {
+                    # hier wichtig: index 0 überschreiben für die
+                    # normale News-Ansicht
+                    # 0 == Typ-Auswahl an News-Datensatz
+                    0 = HGON\HgonWorkgroup\Domain\Model\News
+                }
+            }
+            HGON\HgonWorkgroup\Domain\Model\News {
+                mapping {
+                    recordType = 0
+                    tableName = tx_news_domain_model_news
+                }
+            }
+            /*
+            HGON\HgonTemplate\Domain\Model\News {
+                subclasses {
+                    # hier wichtig: index 0 überschreiben für die
+                    # normale News-Ansicht
+                    # 0 == Typ-Auswahl an News-Datensatz
+                    0 = HGON\HgonWorkgroup\Domain\Model\News
+                }
+            }
+            */
+        }
+    }
+}
+/*
+plugin.tx_news {
+    persistence {
+        classes {
+            GeorgRinger\News\Domain\Model\News {
+                subclasses {
+                    # hier wichtig: index 0 überschreiben für die
+                    # normale News-Ansicht
+                    # 0 == Typ-Auswahl an News-Datensatz
+                    0 = HGON\HgonWorkgroup\Domain\Model\News
+                }
+            }
+            HGON\HgonWorkgroup\Domain\Model\News {
+                mapping {
+                    recordType = 0
+                    tableName = tx_news_domain_model_news
+                }
+            }
+        }
+    }
+}
+*/
+
+
+plugin.tx_hgonworkgroup {
+    view {
+        templateRootPaths.0 = EXT:{extension.extensionKey}/Resources/Private/Templates/
+        templateRootPaths.1 = {$plugin.tx_hgonworkgroup.view.templateRootPath}
+        partialRootPaths.0 = EXT:hgon_workgroup/Resources/Private/Partials/
+        partialRootPaths.1 = {$plugin.tx_hgonworkgroup.view.partialRootPath}
+        layoutRootPaths.0 = EXT:hgon_workgroup/Resources/Private/Layouts/
+        layoutRootPaths.1 = {$plugin.tx_hgonworkgroup.view.layoutRootPath}
+    }
+    persistence {
+        storagePid = {$plugin.tx_hgonworkgroup.persistence.storagePid}
+        #recursive = 1
+    }
+    features {
+        #skipDefaultArguments = 1
+        # if set to 1, the enable fields are ignored in BE context
+        #ignoreAllEnableFieldsInBe = 0
+        # Should be on by default, but can be disabled if all action in the plugin are uncached
+        #requireCHashArgumentForActionArguments = 1
+    }
+    mvc {
+        #callDefaultActionIfActionCantBeResolved = 1
+    }
+    settings {
+        listPid = {$plugin.tx_hgonworkgroup.settings.listPid}
+        showPid = {$plugin.tx_hgonworkgroup.settings.showPid}
+        ajaxTypeNum = {$plugin.tx_hgonworkgroup.settings.ajaxTypeNum}
+    }
+}
+
+plugin.tx_hgonworkgroup_list < plugin.tx_hgonworkgroup
+plugin.tx_hgonworkgroup_search < plugin.tx_hgonworkgroup

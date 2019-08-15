@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="de" datatype="plaintext" original="messages" date="2019-05-08T11:02:15Z" product-name="hgon_workgroup">
+		<header/>
+		<body>
+			<trans-unit id="tx_hgonworkgroup_domain_model_workgroup">
+                <source>Work Group</source>
+                <target>Arbeitskreis</target>
+            </trans-unit>
+            <trans-unit id="tx_hgonworkgroup_domain_model_workgroup.title">
+                <source>Title</source>
+                <target>Titel</target>
+            </trans-unit>
+            <trans-unit id="tx_hgonworkgroup_domain_model_workgroup.description">
+                <source>Description</source>
+                <target>Beschreibung</target>
+            </trans-unit>
+            <trans-unit id="tx_hgonworkgroup_domain_model_workgroup.short_description">
+                <source>Short Description</source>
+                <target>Kurzbeschreibung</target>
+            </trans-unit>
+            <trans-unit id="tx_hgonworkgroup_domain_model_workgroup.address">
+                <source>Address</source>
+                <target>Adresse</target>
+            </trans-unit>
+            <trans-unit id="tx_hgonworkgroup_domain_model_workgroup.zip">
+                <source>Zip (as comma separated list)</source>
+                <target>PLZ</target>
+            </trans-unit>
+            <trans-unit id="tx_hgonworkgroup_domain_model_workgroup.city">
+                <source>City</source>
+                <target>Stadt</target>
+            </trans-unit>
+            <trans-unit id="tx_hgonworkgroup_domain_model_workgroup.district">
+                <source>District</source>
+                <target>Landkreis</target>
+            </trans-unit>
+            <trans-unit id="tx_hgonworkgroup_domain_model_workgroup.contact_person">
+                <source>Contact Person</source>
+                <target>Kontaktperson</target>
+            </trans-unit>
+            <trans-unit id="tx_hgonworkgroup_domain_model_workgroup.eventStd">
+                <source>Event</source>
+                <target>Veranstaltungen</target>
+            </trans-unit>
+            <trans-unit id="tx_hgonworkgroup_domain_model_workgroup.eventWg">
+                <source>Event Workgroup</source>
+                <target>Veranstaltungen (Arbeitskreistreffen)</target>
+            </trans-unit>
+            <trans-unit id="tx_hgonworkgroup_domain_model_workgroup.news">
+                <source>News</source>
+                <target>Meldungen</target>
+            </trans-unit>
+
+
+			<trans-unit id="tx_hgon_workgroup_list.name">
+				<source>Liste</source>
+			</trans-unit>
+			<trans-unit id="tx_hgon_workgroup_list.description">
+				<source></source>
+			</trans-unit>
+			<trans-unit id="tx_hgon_workgroup_search.name">
+				<source>Suche</source>
+			</trans-unit>
+			<trans-unit id="tx_hgon_workgroup_search.description">
+				<source></source>
+			</trans-unit>
+
+            <trans-unit id="tx_hgonworkgroup_domain_model_workgroup.tab_stdevents">
+                <source>Events (General events)</source>
+                <target>Veranstaltungen (allgemein)</target>
+            </trans-unit>
+			<trans-unit id="tx_hgonworkgroup_domain_model_workgroup.tab_wgevents">
+                <source>Events (WorkingGroup meetings)</source>
+                <target>Veranstaltungen (Arbeitsgruppen-Treffen)</target>
+            </trans-unit>
+            <trans-unit id="tx_hgonworkgroup_domain_model_workgroup.tab_news">
+                <source>News</source>
+                <target>Meldungen</target>
+            </trans-unit>
+
+            <trans-unit id="tx_news.tx_hgon_workgroup">
+                <source>Workgroup</source>
+                <target>Zugeordnete Arbeitsgruppe(n)</target>
+            </trans-unit>
+
+            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgon_workgroup_wgevent">
+                <source>Workgroup</source>
+                <target>Zugeordnete Arbeitsgruppe(n) zu Workgroup-Event</target>
+            </trans-unit>
+            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgon_workgroup_stdevent">
+                <source>Workgroup</source>
+                <target>Zugeordnete Arbeitsgruppe(n) zu Standard-Event</target>
+            </trans-unit>
+
+             <!-- FLEXFORM -->
+            <trans-unit id="flexform.search.sheetTitle">
+                <source>Search: Shown text</source>
+                <target>Suche: Angezeigter Text</target>
+            </trans-unit>
+            <trans-unit id="flexform.search.preHeader">
+                <source>Pre header</source>
+                <target>Pre-Headline (blaue Schrift)</target>
+            </trans-unit>
+            <trans-unit id="flexform.search.header">
+                <source>Header</source>
+                <target>Headline</target>
+            </trans-unit>
+            <trans-unit id="flexform.search.text">
+                <source>Text</source>
+                <target>Text</target>
+            </trans-unit>
+		</body>
+	</file>
+</xliff>

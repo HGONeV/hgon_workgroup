@@ -1,0 +1,61 @@
+<section class="breaker / no-margin">
+    <div class="flex-container space-between gutter valign-center">
+        <div class="flex-item c-6">
+            <div id="c37" class="frame frame-default frame-type-text frame-layout-0">
+                <span class="tagline color-font-secondary ">
+                    <f:if condition="{settings.search.preHeader}">
+                        <f:then>
+                            {settings.search.preHeader}
+                        </f:then>
+                        <f:else>
+                            <f:translate key="tx_hgonworkgroup_template_workgroup_search.preHeader" />
+                        </f:else>
+                    </f:if>
+                </span>
+                <h2 class="headline">
+                    <f:if condition=" {settings.search.header}">
+                        <f:then>
+                            {settings.search.header}
+                        </f:then>
+                        <f:else>
+                            <f:translate key="tx_hgonworkgroup_template_workgroup_search.header" />
+                        </f:else>
+                    </f:if>
+                </h2>
+                <p>
+                    <f:if condition="{settings.search.text}">
+                        <f:then>
+                            {settings.search.text}
+                        </f:then>
+                        <f:else>
+                            <f:translate key="tx_hgonworkgroup_template_workgroup_search.text" />
+                        </f:else>
+                    </f:if>
+                </p>
+            </div>
+        </div>
+        <div class="flex-item c-6">
+            <picture class="breaker__image breaker__image--bg">
+                <img src="{f:uri.resource(path: 'Images/img-map.png')}" alt="" width="372" height="538">
+            </picture>
+            <f:form class="form form--plain form-plz" pageUid="{settings.listPid}" action="list" controller="WorkGroup" extensionName="HgonWorkgroup" pluginName="List" name="search" >
+                <label for="workgroup">
+                    <f:translate key="tx_hgonworkgroup_template_general.findWorkGroup" />
+                </label>
+                <div class="input-group input-group--inline mobile-align-center">
+                    <f:form.textfield class="input input--rounded" placeholder="Postleitzahl eingeben" name="searchTerm" id="workgroup" type="text" additionalAttributes="{required: required, minlength: 5, maxlength: 5}" />
+                    <button type="submit" class="btn btn--primary btn--rounded">
+                        <f:translate key="tx_hgonworkgroup_template_general.findWorkGroup" />
+                    </button>
+                </div>
+
+                <!-- message container -->
+                <div id="tx-hgonworkgroup-search-message"></div>
+            </f:form>
+        </div>
+    </div>
+</section>
+
+
+
+

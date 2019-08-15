@@ -1,0 +1,23 @@
+
+plugin.tx_hgonworkgroup {
+    view {
+        # cat=plugin.tx_hgonworkgroup/file; type=string; label=Path to template root (FE)
+        templateRootPath = EXT:hgon_workgroup/Resources/Private/Templates/
+        # cat=plugin.tx_hgonworkgroup/file; type=string; label=Path to template partials (FE)
+        partialRootPath = EXT:hgon_workgroup/Resources/Private/Partials/
+        # cat=plugin.tx_hgonworkgroup/file; type=string; label=Path to template layouts (FE)
+        layoutRootPath = EXT:hgon_workgroup/Resources/Private/Layouts/
+    }
+    persistence {
+        # cat=plugin.tx_hgonworkgroup//a; type=string; label=Default storage PID
+        storagePid =
+    }
+    settings {
+        # cat=plugin.tx_hgonworkgroup; type=integer; label=PID for listing workgroup
+        listPid =
+        # cat=plugin.tx_hgonworkgroup; type=integer; label=PID for showing workgroup
+        showPid =
+        # cat=plugin.tx_hgonworkgroup; type=integer; label=PageNum for AJAX-requests
+        ajaxTypeNum = 1557318613
+    }
+}

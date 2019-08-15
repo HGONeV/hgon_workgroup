@@ -1,0 +1,50 @@
+{namespace hgon=HGON\HgonTemplate\ViewHelpers}
+<html xmlns:f="https://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+    <section id="workgroup-list-anchor" class="article article--fullwidth / color-bg-tertiary">
+        <f:form section="workgroup-list-anchor" class="form form--plain form-plz" action="list" controller="WorkGroup" name="search" >
+            <div class="flex-container center-main center-cross gutter">
+                <div class="flex-item c-9 / align-center">
+                    <div class="input-group input-group--inline mobile-align-center">
+                        <div class="input-wrapper">
+                            <f:form.textfield class="input input--rounded" placeholder="Postleitzahl eingeben" name="searchTerm" id="workgroup" type="text" additionalAttributes="{required: required, minlength: 5, maxlength: 5}" />
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--rounded">
+                            <f:translate key="tx_hgonworkgroup_template_general.findWorkGroup" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </f:form>
+    </section>
+
+    <section class="article article--fullwidth">
+        <f:if condition="{workGroupList}">
+            <div id="tx-hgonworkgroup-listing">
+                <f:then>
+                    <div class="flex-container space-between gutter valign-stretch">
+                        <f:for each="{workGroupList}" as="workGroup" iteration="iter">
+                            <f:for each="<hgon:createRows list='{0: workGroupList}' />" as="row">
+                                <f:for each="{row}" as="workGroup">
+                                    <f:render partial="WorkGroup/ListItem" arguments="{_all}" />
+                                </f:for>
+                            </f:for>
+                        </f:for>
+                    </div>
+                </f:then>
+                <f:else>
+                    <div class="wrap wrap--text / align-center">
+                        <span class="h5 headline">
+                            <f:translate key="tx_hgonworkgroup_template_workgroup_list.noResult" />
+                        </span>
+                        <f:comment><!-- section="workgroup-list-anchor" --></f:comment>
+                        <f:link.action action="list" class="btn btn--tertiary btn--rounded">
+                            <f:translate key="tx_hgonworkgroup_general.showAll" />
+                        </f:link.action>
+                    </div>
+                </f:else>
+            </div>
+        </f:if>
+    </section>
+
+</html>

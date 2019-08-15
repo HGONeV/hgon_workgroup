@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="de" datatype="plaintext" original="messages" date="2019-05-08T11:02:15Z" product-name="hgon_workgroup">
+		<header/>
+		<body>
+			<trans-unit id="tx_hgonworkgroup_domain_model_workgroup">
+			    <source>Work Group</source>
+				<target>Arbeitskreis</target>
+			</trans-unit>
+			<trans-unit id="tx_hgonworkgroup_domain_model_workgroup.title">
+				<source>Title</source>
+				<target>Titel</target>
+			</trans-unit>
+			<trans-unit id="tx_hgonworkgroup_domain_model_workgroup.description">
+				<source>Description</source>
+				<target>Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_hgonworkgroup_domain_model_workgroup.short_description">
+				<source>Short Description</source>
+				<target>Kurzbeschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_hgonworkgroup_domain_model_workgroup.address">
+				<source>Address</source>
+				<target>Adresse</target>
+			</trans-unit>
+			<trans-unit id="tx_hgonworkgroup_domain_model_workgroup.zip">
+				<source>Zip (as comma separated list)</source>
+				<target>PLZ</target>
+			</trans-unit>
+			<trans-unit id="tx_hgonworkgroup_domain_model_workgroup.city">
+				<source>City</source>
+				<target>Stadt</target>
+			</trans-unit>
+			<trans-unit id="tx_hgonworkgroup_domain_model_workgroup.district">
+				<source>District</source>
+				<target>Landkreis</target>
+			</trans-unit>
+			<trans-unit id="tx_hgonworkgroup_domain_model_workgroup.contact_person">
+				<source>Contact Person</source>
+				<target>Kontaktperson</target>
+			</trans-unit>
+			<trans-unit id="tx_hgonworkgroup_domain_model_workgroup.event">
+				<source>Event</source>
+				<target>Veranstaltungen</target>
+			</trans-unit>
+
+
+
+            <!-- ########################## -->
+            <!-- TEMPLATES -->
+            <!-- ########################## -->
+            <trans-unit id="tx_hgonworkgroup_general.showAll">
+                <source>Show all</source>
+                <target>Alle anzeigen</target>
+            </trans-unit>
+            <trans-unit id="tx_hgonworkgroup_template_general.findWorkGroup">
+                <source>Find workgroup</source>
+                <target>Arbeitskreis finden</target>
+            </trans-unit>
+            <trans-unit id="tx_hgonworkgroup_template_general.findOutMore">
+                <source>Find out more</source>
+                <target>Mehr erfahren</target>
+            </trans-unit>
+
+            <trans-unit id="tx_hgonworkgroup_template_workgroup_search.preHeader">
+                <source>Locally</source>
+                <target>VOR ORT</target>
+            </trans-unit>
+            <trans-unit id="tx_hgonworkgroup_template_workgroup_search.header">
+                <source>Join</source>
+                <target>Mitmachen</target>
+            </trans-unit>
+            <trans-unit id="tx_hgonworkgroup_template_workgroup_search.text">
+                <source>Find us</source>
+                <target>Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</target>
+            </trans-unit>
+
+            <trans-unit id="tx_hgonworkgroup_template_workgroup_list.noResult">
+                <source>Sorry, we can't found a work group</source>
+                <target>Es konnte leider kein passender Arbeitskreis gefunden werden.</target>
+            </trans-unit>
+
+
+		</body>
+	</file>
+</xliff>
