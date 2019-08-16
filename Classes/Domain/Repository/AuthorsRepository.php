@@ -1,6 +1,6 @@
 <?php
 
-namespace HGON\HgonWorkGroup\Domain\Repository;
+namespace HGON\HgonWorkgroup\Domain\Repository;
 
 /*
  * This file is part of the TYPO3 CMS project.

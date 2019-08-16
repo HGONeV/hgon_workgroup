@@ -1,6 +1,6 @@
 <?php
 
-namespace HGON\HgonWorkGroup\Domain\Repository;
+namespace HGON\HgonWorkgroup\Domain\Repository;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -21,7 +21,7 @@ namespace HGON\HgonWorkGroup\Domain\Repository;
  *
  * @author Maximilian Fäßler <maximilian@faesslerweb.de>
  * @copyright HGON
- * @package HGON_HgonWorkGroup
+ * @package HGON_HgonWorkgroup
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
 class EventRepository extends \RKW\RkwEvents\Domain\Repository\EventRepository
