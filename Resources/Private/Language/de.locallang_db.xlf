@@ -110,6 +110,18 @@
                 <source>Text</source>
                 <target>Text</target>
             </trans-unit>
+
+
+            <!-- be_groups -->
+            <trans-unit id="tx_hgonworkgroup_be_groups_workgroup">
+                <source>Work group</source>
+                <target>Arbeitsgruppe-Gruppe (Hat beschränkten Zugriff auf eigene Inhalte)</target>
+            </trans-unit>
+            <trans-unit id="tx_hgonworkgroup_be_groups_admingroup">
+                <source>Admin group</source>
+                <target>Admin-Gruppe (Hat Zugriff auf alles)</target>
+            </trans-unit>
+
 		</body>
 	</file>
 </xliff>

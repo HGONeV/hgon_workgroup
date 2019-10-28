@@ -84,3 +84,12 @@ CREATE TABLE tx_hgonworkgroup_domain_model_workgroup_news_mm (
 	KEY uid_local (uid_local),
 	KEY uid_foreign (uid_foreign)
 );
+
+
+#
+# Table structure for table 'be_groups'
+#
+CREATE TABLE be_groups (
+	tx_hgonworkgroup_workgroup int(11) unsigned NOT NULL default '0',
+	tx_hgonworkgroup_admingroup int(11) unsigned NOT NULL default '0',
+);

@@ -86,6 +86,13 @@
             <trans-unit id="flexform.search.text">
                 <source>Text</source>
             </trans-unit>
+
+
+             <!-- be_groups -->
+            <trans-unit id="tx_hgonworkgroup_be_groups_admingroup">
+                <source>Admin group</source>
+            </trans-unit>
+
 		</body>
 	</file>
 </xliff>

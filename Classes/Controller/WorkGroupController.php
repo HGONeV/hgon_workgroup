@@ -45,7 +45,7 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         if (!$searchTerm) {
             // if called by search-plugin
             $request = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_hgonworkgroup_search');
-            if (array_key_exists('searchTerm', $request)) {
+            if (is_array($request) && array_key_exists('searchTerm', $request)) {
                 $searchTerm = intval($request['searchTerm']);
             }
         }
