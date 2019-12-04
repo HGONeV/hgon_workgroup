@@ -1,6 +1,9 @@
 {namespace hgon=HGON\HgonTemplate\ViewHelpers}
+{namespace workgroup=HGON\HgonWorkgroup\ViewHelpers}
+{namespace rkwEvents=RKW\RkwEvents\ViewHelpers}
 
-<f:if condition="<f:count>{eventList}</f:count>">
+
+<f:if condition="<workgroup:checkDateOfEventList eventList='{eventList}' />">
     <f:then>
         <div class="box__content">
             <div class="flex-container space-between gutter">
@@ -9,27 +12,29 @@
                     <f:comment><!-- maximum one row --></f:comment>
                     <f:if condition="{iter.isFirst}">
                         <f:for each="{row}" as="event">
-                            <div class="flex-item c-<f:cObject typoscriptObjectPath='lib.math' data='12/<f:count>{row}</f:count>' />">
-                                <article class="item item-event">
-                                    <header class="item__header">
-                                        <svg width="48" height="48"><use xlink:href="#ui-event"></use></svg>
-                                        <time datetime="{event.start -> f:format.date(format:'d.m.Y')}">{event.start -> f:format.date(format:"d.m.Y")}</time>
-                                        <span class="">{event.place.city}</span>
-                                    </header>
+                            <f:if condition="<rkwEvents:notFinishedEvents event='{event}' />">
+                                <div class="flex-item c-<f:cObject typoscriptObjectPath='lib.math' data='12/<f:count>{row}</f:count>' />">
+                                    <article class="item item-event">
+                                        <header class="item__header">
+                                            <svg width="48" height="48"><use xlink:href="#ui-event"></use></svg>
+                                            <time datetime="{event.start -> f:format.date(format:'d.m.Y')}">{event.start -> f:format.date(format:"d.m.Y")}</time>
+                                            <span class="">{event.place.city}</span>
+                                        </header>
 
-                                    <div class="item__content">
-                                        <h3>
-                                            {event.title}
-                                        </h3>
-                                    </div>
+                                        <div class="item__content">
+                                            <h3>
+                                                {event.title}
+                                            </h3>
+                                        </div>
 
-                                    <footer class="item__footer">
-                                        <f:link.action action="show" controller="Event" pluginName="Pi1" extensionName="RkwEvents" pageUid="{showPid}" arguments="{event : event}" class="link link--goto" title="{event.title}">
-                                            Details
-                                        </f:link.action>
-                                    </footer>
-                                </article>
-                            </div>
+                                        <footer class="item__footer">
+                                            <f:link.action action="show" controller="Event" pluginName="Pi1" extensionName="RkwEvents" pageUid="{showPid}" arguments="{event : event}" class="link link--goto" title="{event.title}">
+                                                Details
+                                            </f:link.action>
+                                        </footer>
+                                    </article>
+                                </div>
+                            </f:if>
                         </f:for>
                     </f:if>
                 </f:for>
@@ -39,7 +44,7 @@
     <f:else>
         <div class="no-search-results first-letter-normal content content-box">
             <div class="csc-default csc-element-n1">
-                <h3><strong>In nächster Zeit sind keine regionalen Veranstaltungen geplant</strong></h3>
+                <p><strong>In nächster Zeit sind keine regionalen Veranstaltungen geplant</strong></p>
             </div>
         </div>
     </f:else>
