@@ -4,8 +4,8 @@
 		<header/>
 		<body>
 			<trans-unit id="tx_hgonworkgroup_domain_model_workgroup">
-                <source>Work Group</source>
-                <target>Arbeitskreis</target>
+                <source>HGON Workgroup: Work Group</source>
+                <target>HGON Workgroup: Arbeitskreis</target>
             </trans-unit>
             <trans-unit id="tx_hgonworkgroup_domain_model_workgroup.title">
                 <source>Title</source>

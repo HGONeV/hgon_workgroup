@@ -4,7 +4,7 @@
 		<header/>
 		<body>
 			<trans-unit id="tx_hgonworkgroup_domain_model_workgroup">
-				<source>Work Group</source>
+				<source>HGON Workgroup: Work Group</source>
 			</trans-unit>
 			<trans-unit id="tx_hgonworkgroup_domain_model_workgroup.title">
 				<source>Title</source>
