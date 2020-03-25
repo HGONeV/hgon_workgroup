@@ -97,4 +97,5 @@ plugin.tx_hgonworkgroup {
 }
 
 plugin.tx_hgonworkgroup_list < plugin.tx_hgonworkgroup
+plugin.tx_hgonworkgroup_detail < plugin.tx_hgonworkgroup
 plugin.tx_hgonworkgroup_search < plugin.tx_hgonworkgroup

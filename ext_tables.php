@@ -8,7 +8,25 @@ call_user_func(
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
             'HGON.HgonWorkgroup',
             'List',
-            'HGON Arbeitsgruppe: Liste / Detail'
+            'HGON Arbeitsgruppe: Liste'
+        );
+
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+            'HGON.HgonWorkgroup',
+            'Detail',
+            'HGON Arbeitsgruppe: Detail'
+        );
+
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+            'HGON.HgonWorkgroup',
+            'Header',
+            'HGON Arbeitsgruppe: Header'
+        );
+
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+            'HGON.HgonWorkgroup',
+            'Sidebar',
+            'HGON Arbeitsgruppe: Sidebar'
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(

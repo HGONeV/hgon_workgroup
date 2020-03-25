@@ -14,6 +14,7 @@ CREATE TABLE tx_hgonworkgroup_domain_model_workgroup (
 	city varchar(255) DEFAULT '' NOT NULL,
 	district varchar(255) DEFAULT '' NOT NULL,
 
+    image int(11) unsigned NOT NULL default '0',
 	contact_person int(11) unsigned DEFAULT '0' NOT NULL,
 	wg_event int(11) unsigned DEFAULT '0' NOT NULL,
 	std_event int(11) unsigned DEFAULT '0' NOT NULL,

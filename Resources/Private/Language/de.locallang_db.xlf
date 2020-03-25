@@ -35,6 +35,10 @@
                 <source>District</source>
                 <target>Landkreis</target>
             </trans-unit>
+            <trans-unit id="tx_hgonworkgroup_domain_model_workgroup.image">
+                <source>Image</source>
+                <target>Bild</target>
+            </trans-unit>
             <trans-unit id="tx_hgonworkgroup_domain_model_workgroup.contact_person">
                 <source>Contact Person</source>
                 <target>Kontaktperson</target>

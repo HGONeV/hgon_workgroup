@@ -1,0 +1,60 @@
+{namespace hgon=HGON\HgonTemplate\ViewHelpers}
+<f:for each="{workGroup.contactPerson}" as="author">
+    <f:if condition="{author}">
+        <aside class="aside color-bg-tertiary">
+            <header class="aside__header">
+                <h6>
+                    Ansprechpartner
+                </h6>
+            </header>
+            <div class="aside__content">
+                <p class="cf">
+                    <f:if condition="{author.imageBoxes}" >
+                        <f:image class="img-left" image="{author.imageBoxes}" alt="{author.imageBoxes.title}" width="100" height="100" />
+                    </f:if>
+                </p>
+                <p>
+                    <strong>{author.firstName} {author.lastName}</strong>
+                    <br/>
+                    {author.functionTitle}
+                    <br/>
+                </p>
+                <p>
+                    <a href="tel:<hgon:php.pregReplace pattern='[^+0-9]' replacement='' subject='{author.phone} {author.phone2}' />">
+                        <svg class="icon icon--btn-left color-font-primary" width="16" height="16"><use xlink:href="#ui-phone"></use></svg>
+                        <f:format.stripTags>{author.phone} {author.phone2}</f:format.stripTags>
+                    </a>
+                    <br>
+                    <a href="mailto:<f:format.stripTags><f:format.html>{author.email}</f:format.html></f:format.stripTags>">
+                        <svg class="icon icon--btn-left color-font-primary" width="16" height="16"><use xlink:href="#ui-mail"></use></svg>
+                        {author.email}
+                    </a>
+                </p>
+            </div>
+        </aside>
+    </f:if>
+</f:for>
+
+<f:if condition="{newsList}">
+    <aside class="aside aside--border aside--has-btn aside-timeline color-bg-white">
+        <header class="aside__header">
+            <h6>Meldungen</h6>
+        </header>
+        <div class="aside__content">
+            <f:for each="{newsList}" as="newsItem">
+                <div class="aside-timeline__item aside-timeline__item--first">
+                    <span class="aside-timeline__date">
+                        <time itemprop="datePublished" datetime="{f:format.date(date:newsItem.datetime, format:'Y-m-d')}">
+                            <f:format.date format="{f:translate(key:'dateFormat')}">{newsItem.datetime}</f:format.date>
+                        </time>
+                    </span>
+                    <p>
+                        <f:link.page pageUid="{settings.news.detailPid}" additionalParams="{tx_news_pi1:{news: newsItem, controller: 'News', action: 'detail'}}">
+                            {newsItem.title}
+                        </f:link.page>
+                    </p>
+                </div>
+            </f:for>
+        </div>
+    </aside>
+</f:if>

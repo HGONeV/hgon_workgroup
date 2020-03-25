@@ -12,6 +12,9 @@ namespace HGON\HgonWorkgroup\Controller;
  *
  ***/
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use RKW\RkwEvents\Helper\DivUtility;
+use \RKW\RkwBasics\Helper\Common;
+use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /**
  * WorkGroupController
@@ -33,6 +36,14 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * @inject
      */
     protected $eventRepository = null;
+
+    /**
+     * newsRepository
+     *
+     * @var \HGON\HgonWorkgroup\Domain\Repository\NewsRepository
+     * @inject
+     */
+    protected $newsRepository = null;
 
     /**
      * action list
@@ -77,6 +88,67 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     public function showAction(\HGON\HgonWorkgroup\Domain\Model\WorkGroup $workGroup)
     {
         $this->view->assign('workGroup', $workGroup);
+
+        $rkwEventsSettings = $this->getRkwEventsSettings();
+        // workaround: Add RkwEvents showPid for event link building
+        $this->view->assign('showPid', $rkwEventsSettings['showPid']);
+
+        $stdEventToShow = [];
+        /** @var \HGON\HgonWorkgroup\Domain\Model\Event $stdEvent */
+        foreach ($workGroup->getStdEvent() as $stdEvent) {
+            if ($stdEvent->getStart() > time() ) {
+                $stdEventToShow[] = $stdEvent;
+            }
+        }
+        $this->view->assign('sortedEventList', DivUtility::groupEventsByMonth($stdEventToShow));
+
+        $wgEventToShow = [];
+        /** @var \HGON\HgonWorkgroup\Domain\Model\Event $stdEvent */
+        foreach ($workGroup->getWgEvent() as $wgEvent) {
+            if ($wgEvent->getStart() > time() ) {
+                $wgEventToShow[] = $wgEvent;
+            }
+        }
+        $this->view->assign('sortedWorkgroupEventList', DivUtility::groupEventsByMonth($wgEventToShow));
+    }
+
+
+
+    /**
+     * action header
+     * Template helper
+     *
+     * @return void
+     */
+    public function headerAction()
+    {
+
+        $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_hgonworkgroup_detail');
+
+        $workGroupUid = preg_replace('/[^0-9]/', '', $getParams['workGroup']);
+        $workGroup = $this->workGroupRepository->findByIdentifier(filter_var($workGroupUid, FILTER_SANITIZE_NUMBER_INT));
+
+        $this->view->assign('workGroup', $workGroup);
+    }
+
+
+
+    /**
+     * action sidebar
+     * Template helper
+     *
+     * @return void
+     */
+    public function sidebarAction()
+    {
+
+        $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_hgonworkgroup_detail');
+
+        $workGroupUid = preg_replace('/[^0-9]/', '', $getParams['workGroup']);
+        $workGroup = $this->workGroupRepository->findByIdentifier(filter_var($workGroupUid, FILTER_SANITIZE_NUMBER_INT));
+
+        $this->view->assign('workGroup', $workGroup);
+        $this->view->assign('newsList', $this->newsRepository->findByFilter([], [$workGroup]));
     }
 
 
@@ -89,5 +161,20 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     public function searchAction()
     {
         // do nothing special here. Just show the search form
+    }
+
+
+
+    /**
+     * Returns TYPO3 settings
+     *
+     * @param string $which Which type of settings will be loaded
+     * @return array
+     * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
+     */
+    protected function getRkwEventsSettings($which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS)
+    {
+        return Common::getTyposcriptConfiguration('Rkwevents', $which);
+        //===
     }
 }

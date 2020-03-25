@@ -9,11 +9,47 @@ call_user_func(
             'HGON.HgonWorkgroup',
             'List',
             [
-                'WorkGroup' => 'list, show'
+                'WorkGroup' => 'list'
             ],
             // non-cacheable actions
             [
-                'WorkGroup' => 'list, show'
+                'WorkGroup' => 'list'
+            ]
+        );
+
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'HGON.HgonWorkgroup',
+            'Detail',
+            [
+                'WorkGroup' => 'show'
+            ],
+            // non-cacheable actions
+            [
+                'WorkGroup' => 'show'
+            ]
+        );
+
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'HGON.HgonWorkgroup',
+            'Header',
+            [
+                'WorkGroup' => 'header'
+            ],
+            // non-cacheable actions
+            [
+                'WorkGroup' => 'header'
+            ]
+        );
+
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'HGON.HgonWorkgroup',
+            'Sidebar',
+            [
+                'WorkGroup' => 'sidebar'
+            ],
+            // non-cacheable actions
+            [
+                'WorkGroup' => 'sidebar'
             ]
         );
 

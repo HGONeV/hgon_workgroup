@@ -2,63 +2,87 @@
 	<f:layout name="Default" />
 
 	<f:section name="content">
-        <div class="content">
-            <article class="article">
-                <div class="article__content">
-                    <h1>{workGroup.title}</h1>
 
-                    <p>{workGroup.shortDescription}</p>
-                    <p><f:format.raw>{workGroup.description}</f:format.raw></p>
+        <div class="article__content">
+            <h1>{workGroup.title}</h1>
+
+            <p>{workGroup.shortDescription}</p>
+            <p><f:format.raw>{workGroup.description}</f:format.raw></p>
+        </div>
+
+
+        <f:if condition="{sortedWorkgroupEventList}">
+            <h2>Arbeitskreistreffen</h2>
+            <section class="article article--fullwidth">
+                <h2>Arbeitskreistreffen</h2>
+                <div class="flex-container space-between gutter / mt-1" id="tx-rkwevents-grid-section-workgroup">
+                    <f:if condition="<f:count>{sortedWorkgroupEventList}</f:count>">
+                        <f:then>
+                            <f:for each="{sortedWorkgroupEventList}" as="event">
+                                <f:render partial="Event/List/Box" arguments="{_all}" section="list" />
+                            </f:for>
+                        </f:then>
+                        <f:else>
+                            <div class="no-search-results first-letter-normal content content-box">
+                                <div class="csc-default csc-element-n1">
+                                    <p><strong>Es wurde kein passendes Arbeitsgruppentreffen gefunden.</strong></p>
+                                </div>
+                            </div>
+                        </f:else>
+                    </f:if>
                 </div>
+            </section>
+        </f:if>
 
+        <f:if condition="{sortedEventList}">
+            <h2>Veranstaltungen</h2>
+            <f:render partial="Event/List/EventListing" arguments="{_all}" />
+        </f:if>
 
-                <section class="section / js-tabs-container">
+        <f:comment>
+            <section class="section / js-tabs-container">
 
-                    <div class="section__content / no-padding-top">
-                        <div class="flex-container space-between gutter">
-                            <div class="flex-item c-12 ">
-                                <nav class="nav nav--tab js-tab-nav / align-right">
-                                    <ul>
-                                        <li class="active"><a class="js-tab-link" href="#tab-01" data-index="0">Veranstaltungen</a></li>
-                                        <li><a class="js-tab-link" href="#tab-02" data-index="1">Arbeitskreistreffen</a></li>
-                                    </ul>
-                                </nav>
-                                <div class="tabs js-tabs" style="height: 343px;">
-                                    <div class="tab__item js-tab-item active" style="opacity: 1; visibility: inherit;">
-                                        <div class="flex-item c-12">
-                                            <section class="box box--bordered pb-1">
-                                                <header class="box__header">
-                                                    <div class="wrap">
-                                                        <h2 class="tagline">Anstehende Veranstaltungen</h2>
-                                                    </div>
-                                                </header>
-                                                <f:render partial="WorkGroup/Events" arguments="{eventList: workGroup.stdEvent}" />
-                                            </section>
-                                        </div>
+                <div class="section__content / no-padding-top">
+                    <div class="flex-container space-between gutter">
+                        <div class="flex-item c-12 ">
+                            <nav class="nav nav--tab js-tab-nav / align-right">
+                                <ul>
+                                    <li class="active"><a class="js-tab-link" href="#tab-01" data-index="0">Veranstaltungen</a></li>
+                                    <li><a class="js-tab-link" href="#tab-02" data-index="1">Arbeitskreistreffen</a></li>
+                                </ul>
+                            </nav>
+                            <div class="tabs js-tabs" style="height: 343px;">
+                                <div class="tab__item js-tab-item active" style="opacity: 1; visibility: inherit;">
+                                    <div class="flex-item c-12">
+                                        <section class="box box--bordered pb-1">
+                                            <header class="box__header">
+                                                <div class="wrap">
+                                                    <h2 class="tagline">Anstehende Veranstaltungen</h2>
+                                                </div>
+                                            </header>
+                                            <f:render partial="WorkGroup/Events" arguments="{eventList: workGroup.stdEvent}" />
+                                        </section>
                                     </div>
-                                    <div class="tab__item js-tab-item">
-                                        <div class="flex-item c-12">
-                                            <section class="box box--bordered pb-1">
-                                                <header class="box__header">
-                                                    <div class="wrap">
-                                                        <h2 class="tagline">Kommende Arbeitskreis-Treffen</h2>
-                                                    </div>
-                                                </header>
-                                                <f:render partial="WorkGroup/Events" arguments="{eventList: workGroup.wgEvent}" />
-                                            </section>
-                                        </div>
+                                </div>
+                                <div class="tab__item js-tab-item">
+                                    <div class="flex-item c-12">
+                                        <section class="box box--bordered pb-1">
+                                            <header class="box__header">
+                                                <div class="wrap">
+                                                    <h2 class="tagline">Kommende Arbeitskreis-Treffen</h2>
+                                                </div>
+                                            </header>
+                                            <f:render partial="WorkGroup/Events" arguments="{eventList: workGroup.wgEvent}" />
+                                        </section>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
-            </article>
-            <div class="sidebar">
-                <f:render partial="WorkGroup/Data" arguments="{_all}" />
-                <f:render partial="WorkGroup/ContactPerson" arguments="{_all}" />
-            </div>
-        </div>
+                </div>
+            </section>
+        </f:comment>
+
 
 	</f:section>
 

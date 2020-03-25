@@ -67,6 +67,14 @@ class WorkGroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $district = '';
 
     /**
+     * image
+     *
+     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
+     * @cascade remove
+     */
+    protected $image = null;
+
+    /**
      * contactPerson
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonWorkgroup\Domain\Model\Authors>
@@ -99,6 +107,7 @@ class WorkGroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @cascade remove
      */
     protected $txNews = null;
+
 
     /**
      * __construct
@@ -270,6 +279,27 @@ class WorkGroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setDistrict($district)
     {
         $this->district = $district;
+    }
+
+    /**
+     * Returns the image
+     *
+     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Sets the image
+     *
+     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
+     * @return void
+     */
+    public function setImage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $image)
+    {
+        $this->image = $image;
     }
 
     /**
