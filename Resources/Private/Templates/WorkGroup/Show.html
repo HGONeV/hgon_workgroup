@@ -13,26 +13,30 @@
 
         <f:if condition="{sortedWorkgroupEventList}">
             <h2>Arbeitskreistreffen</h2>
-            <section class="article article--fullwidth">
-                <h2>Arbeitskreistreffen</h2>
-                <div class="flex-container space-between gutter / mt-1" id="tx-rkwevents-grid-section-workgroup">
-                    <f:if condition="<f:count>{sortedWorkgroupEventList}</f:count>">
-                        <f:then>
-                            <f:for each="{sortedWorkgroupEventList}" as="event">
-                                <f:render partial="Event/List/Box" arguments="{_all}" section="list" />
+
+            <div class="flex-container space-between gutter / mt-1" id="tx-rkwevents-grid-section-workgroup">
+                <f:if condition="<f:count>{sortedWorkgroupEventList}</f:count>">
+                    <f:then>
+                        <f:for each="{sortedWorkgroupEventList}" as="eventsInYear" iteration="year">
+                            <f:for each="{eventsInYear}" as="eventsInMonth" iteration="month">
+                                <f:for each="{eventsInMonth}" as="event">
+                                    <f:render partial="Event/List/Box" arguments="{_all}" section="list" />
+                                </f:for>
                             </f:for>
-                        </f:then>
-                        <f:else>
-                            <div class="no-search-results first-letter-normal content content-box">
-                                <div class="csc-default csc-element-n1">
-                                    <p><strong>Es wurde kein passendes Arbeitsgruppentreffen gefunden.</strong></p>
-                                </div>
+                        </f:for>
+                    </f:then>
+                    <f:else>
+                        <div class="no-search-results first-letter-normal content content-box">
+                            <div class="csc-default csc-element-n1">
+                                <p><strong>Es wurde kein passendes Arbeitsgruppentreffen gefunden.</strong></p>
                             </div>
-                        </f:else>
-                    </f:if>
-                </div>
-            </section>
+                        </div>
+                    </f:else>
+                </f:if>
+            </div>
         </f:if>
+
+        <br/><br/>
 
         <f:if condition="{sortedEventList}">
             <h2>Veranstaltungen</h2>
