@@ -95,19 +95,31 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 
         $stdEventToShow = [];
         /** @var \HGON\HgonWorkgroup\Domain\Model\Event $stdEvent */
+        $stdEventIter = 0;
         foreach ($workGroup->getStdEvent() as $stdEvent) {
-            if ($stdEvent->getStart() > time() ) {
+            // show until two months but minimum two items
+            if (
+                $stdEvent->getStart() > time()
+                && $stdEvent->getStart() < date("Y-m-d", strtotime("+2 months")) || $stdEventIter < 2
+            ) {
                 $stdEventToShow[] = $stdEvent;
             }
+            $stdEventIter++;
         }
         $this->view->assign('sortedEventList', DivUtility::groupEventsByMonth($stdEventToShow));
 
         $wgEventToShow = [];
-        /** @var \HGON\HgonWorkgroup\Domain\Model\Event $stdEvent */
+        /** @var \HGON\HgonWorkgroup\Domain\Model\Event $wgEvent */
+        $wgEventIter = 0;
         foreach ($workGroup->getWgEvent() as $wgEvent) {
-            if ($wgEvent->getStart() > time() ) {
+            // show until two months but minimum two items
+            if (
+                $wgEvent->getStart() > time()
+                && $wgEvent->getStart() < date("Y-m-d", strtotime("+2 months"))  || $wgEventIter < 2
+            ) {
                 $wgEventToShow[] = $wgEvent;
             }
+            $wgEventIter++;
         }
         $this->view->assign('sortedWorkgroupEventList', DivUtility::groupEventsByMonth($wgEventToShow));
     }

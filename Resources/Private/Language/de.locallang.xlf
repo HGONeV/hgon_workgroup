@@ -72,7 +72,7 @@
             </trans-unit>
             <trans-unit id="tx_hgonworkgroup_template_workgroup_search.text">
                 <source>Find us</source>
-                <target>Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</target>
+                <target>Die aktiven Mitglieder der HGON sind in „Arbeitskreisen“ organisiert, meist deckungsgleich mit den hessischen Landkreisen. Viele Mitglieder engagieren sich in mehreren Kreisen zugleich, was sehr erfreulich ist, denn Vernetzung bietet viele Vorteile. In jedem „AK“ gibt es eine*n Arbeitskreissprecher*in. Diese Person fungiert als Schnittstelle zwischen den Mitgliedern vor Ort und der Vereinsführung, bestehend aus Vorstand und Geschäftsstelle.</target>
             </trans-unit>
 
             <trans-unit id="tx_hgonworkgroup_template_workgroup_list.noResult">
