@@ -93,6 +93,9 @@ plugin.tx_hgonworkgroup {
         listPid = {$plugin.tx_hgonworkgroup.settings.listPid}
         showPid = {$plugin.tx_hgonworkgroup.settings.showPid}
         ajaxTypeNum = {$plugin.tx_hgonworkgroup.settings.ajaxTypeNum}
+        news {
+            showPid = {$plugin.tx_hgonworkgroup.settings.news.showPid}
+        }
     }
 }
 
