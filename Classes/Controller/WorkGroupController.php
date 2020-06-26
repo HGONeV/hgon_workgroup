@@ -136,7 +136,6 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     {
 
         $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_hgonworkgroup_detail');
-
         $workGroupUid = preg_replace('/[^0-9]/', '', $getParams['workGroup']);
         $workGroup = $this->workGroupRepository->findByIdentifier(filter_var($workGroupUid, FILTER_SANITIZE_NUMBER_INT));
 
@@ -160,7 +159,11 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $workGroup = $this->workGroupRepository->findByIdentifier(filter_var($workGroupUid, FILTER_SANITIZE_NUMBER_INT));
 
         $this->view->assign('workGroup', $workGroup);
-        $this->view->assign('newsList', $this->newsRepository->findByFilter([], [$workGroup]));
+        // only if workGroup is also set
+        if ($workGroup instanceof \HGON\HgonWorkgroup\Domain\Model\WorkGroup) {
+            $this->view->assign('newsList', $this->newsRepository->findByFilter([], [$workGroup]));
+        }
+
     }
 
 
