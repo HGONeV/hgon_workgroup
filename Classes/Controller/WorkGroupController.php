@@ -100,13 +100,15 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             // show until two months but minimum two items
             if (
                 $stdEvent->getStart() > time()
-                && $stdEvent->getStart() < date("Y-m-d", strtotime("+2 months")) || $stdEventIter < 2
+                && $stdEvent->getStart() < strtotime(date("Y-m-d", strtotime("+2 months")))
             ) {
+
                 $stdEventToShow[] = $stdEvent;
             }
             $stdEventIter++;
         }
         $this->view->assign('sortedEventList', DivUtility::groupEventsByMonth($stdEventToShow));
+
 
         $wgEventToShow = [];
         /** @var \HGON\HgonWorkgroup\Domain\Model\Event $wgEvent */
@@ -115,7 +117,7 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             // show until two months but minimum two items
             if (
                 $wgEvent->getStart() > time()
-                && $wgEvent->getStart() < date("Y-m-d", strtotime("+2 months"))  || $wgEventIter < 2
+                && $wgEvent->getStart() < strtotime(date("Y-m-d", strtotime("+2 months")))
             ) {
                 $wgEventToShow[] = $wgEvent;
             }
@@ -134,7 +136,6 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      */
     public function headerAction()
     {
-
         $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_hgonworkgroup_detail');
         $workGroupUid = preg_replace('/[^0-9]/', '', $getParams['workGroup']);
         $workGroup = $this->workGroupRepository->findByIdentifier(filter_var($workGroupUid, FILTER_SANITIZE_NUMBER_INT));

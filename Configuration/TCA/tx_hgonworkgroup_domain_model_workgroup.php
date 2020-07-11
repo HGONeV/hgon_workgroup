@@ -182,7 +182,7 @@ return [
                         ],
                     ],
                 ),
-                'jpg, png, gif'
+                'jpg, jpeg, png, gif'
             ),
 
         ],

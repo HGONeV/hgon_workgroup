@@ -12,7 +12,7 @@
 
 
         <f:if condition="{sortedWorkgroupEventList}">
-            <h2>Arbeitskreistreffen</h2>
+            <h2>Anstehende Arbeitskreistreffen</h2>
 
             <div class="flex-container space-between gutter / mt-1" id="tx-rkwevents-grid-section-workgroup">
                 <f:if condition="<f:count>{sortedWorkgroupEventList}</f:count>">
@@ -39,7 +39,7 @@
         <br/><br/>
 
         <f:if condition="{sortedEventList}">
-            <h2>Veranstaltungen</h2>
+            <h2>Anstehende Veranstaltungen</h2>
             <f:render partial="Event/List/EventListing" arguments="{_all}" />
         </f:if>
 
