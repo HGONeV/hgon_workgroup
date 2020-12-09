@@ -67,12 +67,41 @@ class WorkGroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $district = '';
 
     /**
+     * bankInstitute
+     *
+     * @var string
+     */
+    protected $bankInstitute = '';
+
+    /**
+     * bankIban
+     *
+     * @var string
+     */
+    protected $bankIban = '';
+
+    /**
+     * bank_bic
+     *
+     * @var string
+     */
+    protected $bankBic = '';
+
+    /**
      * image
      *
      * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
      * @cascade remove
      */
     protected $image = null;
+
+    /**
+     * files
+     *
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
+     * @cascade remove
+     */
+    protected $files = null;
 
     /**
      * contactPerson
@@ -132,6 +161,7 @@ class WorkGroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->wgEvent = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->stdEvent = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->txNews = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->files = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
 
     /**
@@ -282,6 +312,54 @@ class WorkGroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
+     * @return string
+     */
+    public function getBankInstitute()
+    {
+        return $this->bankInstitute;
+    }
+
+    /**
+     * @param string $bankInstitute
+     */
+    public function setBankInstitute($bankInstitute)
+    {
+        $this->bankInstitute = $bankInstitute;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBankIban()
+    {
+        return $this->bankIban;
+    }
+
+    /**
+     * @param string $bankIban
+     */
+    public function setBankIban($bankIban)
+    {
+        $this->bankIban = $bankIban;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBankBic()
+    {
+        return $this->bankBic;
+    }
+
+    /**
+     * @param string $bankBic
+     */
+    public function setBankBic($bankBic)
+    {
+        $this->bankBic = $bankBic;
+    }
+
+    /**
      * Returns the image
      *
      * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
@@ -300,6 +378,49 @@ class WorkGroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setImage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $image)
     {
         $this->image = $image;
+    }
+
+    /**
+     * Adds a files
+     *
+     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $files
+     * @return void
+     */
+    public function addFiles(\TYPO3\CMS\Extbase\Domain\Model\FileReference $files)
+    {
+        $this->files->attach($files);
+    }
+
+    /**
+     * Removes a files
+     *
+     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $files The files to be removed
+     * @return void
+     */
+    public function removeFiles(\TYPO3\CMS\Extbase\Domain\Model\FileReference $files)
+    {
+        $this->files->detach($files);
+    }
+
+    /**
+     * Returns the files
+     *
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $files
+     */
+    public function getFiles()
+    {
+        return $this->files;
+    }
+
+    /**
+     * Sets the files
+     *
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $files
+     * @return void
+     */
+    public function setFiles(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $files)
+    {
+        $this->files = $files;
     }
 
     /**

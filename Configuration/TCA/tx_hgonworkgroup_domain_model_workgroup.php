@@ -14,16 +14,16 @@ return [
         'enablecolumns' => [
             'disabled' => 'hidden',
         ],
-        'searchFields' => 'title,description,short_description,address,zip,city,district,image,contact_person,wg_event,std_event,tx_news',
+        'searchFields' => 'title,description,short_description,address,zip,city,district,bank_institute,bank_iban,bank_bic,image,files,contact_person,wg_event,std_event,tx_news',
         'iconfile' => 'EXT:hgon_workgroup/Resources/Public/Icons/tx_hgonworkgroup_domain_model_workgroup.gif'
     ],
     'interface' => [
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, description, short_description, address, zip, city, district, image, contact_person, wg_event, std_event, tx_news',
+        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, description, short_description, address, zip, city, district, bank_institute, bank_iban, bank_bic, image, files, contact_person, wg_event, std_event, tx_news',
     ],
     'types' => [
         '1' => [
             'showitem' => '
-            sys_language_uid, l10n_parent, l10n_diffsource, hidden, image, title, description, short_description, address, zip, city, district, contact_person, 
+            sys_language_uid, l10n_parent, l10n_diffsource, hidden, image, files, title, description, short_description, address, zip, city, district, bank_institute, bank_iban, bank_bic, contact_person, 
             --div--;LLL:EXT:hgon_workgroup/Resources/Private/Language/locallang_db.xlf:tx_hgonworkgroup_domain_model_workgroup.tab_stdevents,
             std_event,
             --div--;LLL:EXT:hgon_workgroup/Resources/Private/Language/locallang_db.xlf:tx_hgonworkgroup_domain_model_workgroup.tab_wgevents,
@@ -164,6 +164,33 @@ return [
                 'eval' => 'trim'
             ],
         ],
+        'bank_institute' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:hgon_workgroup/Resources/Private/Language/locallang_db.xlf:tx_hgonworkgroup_domain_model_workgroup.bank_institute',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ],
+        ],
+        'bank_iban' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:hgon_workgroup/Resources/Private/Language/locallang_db.xlf:tx_hgonworkgroup_domain_model_workgroup.bank_iban',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ],
+        ],
+        'bank_bic' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:hgon_workgroup/Resources/Private/Language/locallang_db.xlf:tx_hgonworkgroup_domain_model_workgroup.bank_bic',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ],
+        ],
         'image' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:hgon_workgroup/Resources/Private/Language/locallang_db.xlf:tx_hgonworkgroup_domain_model_workgroup.image',
@@ -183,6 +210,28 @@ return [
                     ],
                 ),
                 'jpg, jpeg, png, gif'
+            ),
+
+        ],
+        'files' => [
+            'exclude' => 0,
+            'label' => 'LLL:EXT:hgon_workgroup/Resources/Private/Language/locallang_db.xlf:tx_hgonworkgroup_domain_model_workgroup.files',
+            'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
+                'file',
+                array(
+                    'minitems' => 0,
+                    'maxitems' => 9999,
+                    'overrideChildTca' => [
+                        'types' => [
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                                'showitem' => '
+                            --palette--;LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                            --palette--;;filePalette'
+                            ],
+                        ],
+                    ],
+                ),
+                'pdf'
             ),
 
         ],

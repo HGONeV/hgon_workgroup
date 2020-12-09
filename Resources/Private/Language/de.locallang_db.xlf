@@ -35,9 +35,27 @@
                 <source>District</source>
                 <target>Landkreis</target>
             </trans-unit>
+
+            <trans-unit id="tx_hgonworkgroup_domain_model_workgroup.bank_institute">
+                <source>Bank institute</source>
+                <target>Bank Institut (z.B. "Sparkasse Marburg-Biedenkopf)"</target>
+            </trans-unit>
+            <trans-unit id="tx_hgonworkgroup_domain_model_workgroup.bank_iban">
+                <source>Bank IBAN</source>
+                <target>Bank IBAN</target>
+            </trans-unit>
+            <trans-unit id="tx_hgonworkgroup_domain_model_workgroup.bank_bic">
+                <source>Bank BIC</source>
+                <target>Bank BIC</target>
+            </trans-unit>
+
             <trans-unit id="tx_hgonworkgroup_domain_model_workgroup.image">
                 <source>Image</source>
                 <target>Bild</target>
+            </trans-unit>
+            <trans-unit id="tx_hgonworkgroup_domain_model_workgroup.files">
+                <source>Files</source>
+                <target>Dateien (zum Download anbieten)</target>
             </trans-unit>
             <trans-unit id="tx_hgonworkgroup_domain_model_workgroup.contact_person">
                 <source>Contact Person</source>

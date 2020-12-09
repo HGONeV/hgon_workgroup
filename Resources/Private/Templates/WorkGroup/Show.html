@@ -4,13 +4,23 @@
 	<f:section name="content">
 
         <div class="article__content">
-            <f:comment>
-                <h1>{workGroup.title}</h1>
-            </f:comment>
-
             <p>{workGroup.shortDescription}</p>
             <p><f:format.html>{workGroup.description}</f:format.html></p>
+
+
+
+            <f:if condition="<f:count>{workGroup.files}</f:count>">
+                <h5>Informationen zum herunterladen</h5>
+                <f:for each="{workGroup.files}" as="file">
+                    <f:link.typolink parameter="{file.originalResource.publicUrl}">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>&nbsp;
+                        {file.originalResource.title}
+                    </f:link.typolink>
+                    <br>
+                </f:for>
+            </f:if>
         </div>
+
 
 
         <f:if condition="{sortedWorkgroupEventList}">
