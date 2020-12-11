@@ -153,7 +153,6 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      */
     public function sidebarAction()
     {
-
         $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_hgonworkgroup_detail');
 
         $workGroupUid = preg_replace('/[^0-9]/', '', $getParams['workGroup']);
@@ -162,9 +161,10 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         $this->view->assign('workGroup', $workGroup);
         // only if workGroup is also set
         if ($workGroup instanceof \HGON\HgonWorkgroup\Domain\Model\WorkGroup) {
-            $this->view->assign('newsList', $this->newsRepository->findByFilter([], [$workGroup]));
+            $this->view->assign('newsList', $this->newsRepository->findByFilter([], [$workGroup], [], 1, 20));
         }
 
+        $this->view->assign('settingsHgonTemplate', $this->getHgonTemplateSettings());
     }
 
 
@@ -191,6 +191,19 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     protected function getRkwEventsSettings($which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS)
     {
         return Common::getTyposcriptConfiguration('Rkwevents', $which);
+        //===
+    }
+
+    /**
+     * Returns TYPO3 settings
+     *
+     * @param string $which Which type of settings will be loaded
+     * @return array
+     * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
+     */
+    protected function getHgonTemplateSettings($which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS)
+    {
+        return Common::getTyposcriptConfiguration('Hgontemplate', $which);
         //===
     }
 }

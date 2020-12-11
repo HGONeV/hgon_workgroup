@@ -35,11 +35,11 @@
             <div class="aside__content">
                 <f:for each="{newsList}" as="newsItem">
                     <div class="aside-timeline__item aside-timeline__item--first">
-                    <span class="aside-timeline__date">
-                        <time itemprop="datePublished" datetime="{f:format.date(date:newsItem.datetime, format:'Y-m-d')}">
-                            <f:format.date format="{f:translate(key:'dateFormat')}">{newsItem.datetime}</f:format.date>
-                        </time>
-                    </span>
+                        <span class="aside-timeline__date">
+                            <time itemprop="datePublished" datetime="{f:format.date(date:newsItem.datetime, format:'Y-m-d')}">
+                                <f:format.date format="{f:translate(key:'dateFormat')}">{newsItem.datetime}</f:format.date>
+                            </time>
+                        </span>
                         <p>
                             <f:link.page pageUid="{settings.news.showPid}" additionalParams="{tx_news_pi1:{news: newsItem, controller: 'News', action: 'detail'}}">
                                 {newsItem.title}
@@ -48,6 +48,10 @@
                     </div>
                 </f:for>
             </div>
+            <br><br>
+            <f:link.page pageUid="{settingsHgonTemplate.journal.pageUid}" class="aside__btn" >
+                Weitere anzeigen
+            </f:link.page>
         </aside>
     </f:if>
 </f:if>

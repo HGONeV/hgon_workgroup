@@ -81,7 +81,7 @@ class WorkGroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $bankIban = '';
 
     /**
-     * bank_bic
+     * bankBic
      *
      * @var string
      */
