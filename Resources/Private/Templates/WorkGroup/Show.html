@@ -1,3 +1,4 @@
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
 <html xmlns:f="https://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 	<f:layout name="Default" />
 
@@ -11,13 +12,33 @@
 
             <f:if condition="<f:count>{workGroup.files}</f:count>">
                 <h5>Informationen zum herunterladen</h5>
-                <f:for each="{workGroup.files}" as="file">
-                    <f:link.typolink parameter="{file.originalResource.publicUrl}">
-                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i>&nbsp;
-                        {file.originalResource.title}
-                    </f:link.typolink>
-                    <br>
-                </f:for>
+                <div id="journal-flex-container" class="flex-container space-between gutter valign-stretch">
+                    <f:for each="{workGroup.files}" as="file">
+
+
+                        <div class="flex-item c-6">
+                            <article class="card card--border ">
+                                <picture>
+                                    <v:media.pdfThumbnail src="{file.originalResource.publicUrl}" alt="{file.originalResource.title}" />
+                                </picture>
+
+                                <div class="card__inner">
+                                    <header class="card__header">
+                                        <span class="badge badge--secondary">PDF<span class="is-hidden">: </span></span>
+                                        <h3 class="headline">{file.originalResource.title}</h3>
+                                    </header>
+                                    <footer class="card__footer">
+                                        <f:link.typolink parameter="{file.originalResource.publicUrl}">
+                                            <i class="fa fa-file-pdf-o" aria-hidden="true"></i>&nbsp; Öffnen
+                                        </f:link.typolink>
+                                    </footer>
+                                </div>
+                            </article>
+                        </div>
+
+
+                    </f:for>
+                </div>
             </f:if>
         </div>
 
