@@ -12,7 +12,7 @@ namespace HGON\HgonWorkgroup\ViewHelpers;
  *
  * The TYPO3 project - inspiring people to share!
  */
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
  * CheckDateOfEventListViewHelper
@@ -22,7 +22,7 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  * @package HGON_HgonWorkgroup
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class CheckDateOfEventListViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
+class CheckDateOfEventListViewHelper extends AbstractViewHelper
 {
     /**
      * Checks if minimum one event in list is not expired
@@ -41,11 +41,9 @@ class CheckDateOfEventListViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Ab
             /** @var \RKW\RkwEvents\Domain\Model\Event $event */
             if ($date >= time()) {
                 return true;
-                //===
             }
         }
 
         return false;
-        //===
     }
 }

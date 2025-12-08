@@ -22,28 +22,40 @@ use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
     /**
-     * workGroupRepository
-     *
      * @var \HGON\HgonWorkgroup\Domain\Repository\WorkGroupRepository
-     * @inject
      */
-    protected $workGroupRepository = null;
+    protected $workGroupRepository;
 
     /**
-     * eventRepository
-     *
      * @var \HGON\HgonWorkgroup\Domain\Repository\EventRepository
-     * @inject
      */
-    protected $eventRepository = null;
+    protected $eventRepository;
 
     /**
-     * newsRepository
-     *
      * @var \HGON\HgonWorkgroup\Domain\Repository\NewsRepository
-     * @inject
      */
-    protected $newsRepository = null;
+    protected $newsRepository;
+
+    /**
+     * @param \HGON\HgonWorkgroup\Domain\Repository\WorkGroupRepository $workGroupRepository
+     */
+    public function injectWorkGroupRepository(\HGON\HgonWorkgroup\Domain\Repository\WorkGroupRepository $workGroupRepository): void {
+        $this->workGroupRepository = $workGroupRepository;
+    }
+
+    /**
+     * @param \HGON\HgonWorkgroup\Domain\Repository\EventRepository $eventRepository
+     */
+    public function injectEventRepository(\HGON\HgonWorkgroup\Domain\Repository\EventRepository $eventRepository): void {
+        $this->eventRepository = $eventRepository;
+    }
+
+    /**
+     * @param \HGON\HgonWorkgroup\Domain\Repository\NewsRepository $newsRepository
+     */
+    public function injectNewsRepository(\HGON\HgonWorkgroup\Domain\Repository\NewsRepository $newsRepository): void {
+        $this->newsRepository = $newsRepository;
+    }
 
     /**
      * action list
@@ -66,7 +78,6 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             // if $searchTerm is set and something was found -> redirect to view
             if ($workGroup) {
                 $this->redirect('show', null, null, array('workGroup' => $workGroup), $this->settings['showPid']);
-                //===
             }
 
             // if no workGroup was found: A message will be shown via template
@@ -82,7 +93,7 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * action show
      *
      * @param \HGON\HgonWorkgroup\Domain\Model\WorkGroup $workGroup
-     * @ignorevalidation $workGroup
+     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("workGroup")
      * @return void
      */
     public function showAction(\HGON\HgonWorkgroup\Domain\Model\WorkGroup $workGroup)
@@ -191,7 +202,6 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     protected function getRkwEventsSettings($which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS)
     {
         return Common::getTyposcriptConfiguration('Rkwevents', $which);
-        //===
     }
 
     /**
@@ -204,6 +214,5 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     protected function getHgonTemplateSettings($which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS)
     {
         return Common::getTyposcriptConfiguration('Hgontemplate', $which);
-        //===
     }
 }

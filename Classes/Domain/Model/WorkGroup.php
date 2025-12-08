@@ -91,7 +91,8 @@ class WorkGroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * image
      *
      * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-     * @cascade remove
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
+     * /
      */
     protected $image = null;
 
@@ -99,7 +100,8 @@ class WorkGroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * files
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
-     * @cascade remove
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
+     * /
      */
     protected $files = null;
 
@@ -107,7 +109,8 @@ class WorkGroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * contactPerson
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonWorkgroup\Domain\Model\Authors>
-     * @cascade remove
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
+     * /
      */
     protected $contactPerson = null;
 
@@ -116,7 +119,8 @@ class WorkGroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * (workGroupEvent)
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonWorkgroup\Domain\Model\Event>
-     * @cascade remove
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
+     * /
      */
     protected $wgEvent = null;
 
@@ -125,7 +129,8 @@ class WorkGroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * (standardEvent)
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonWorkgroup\Domain\Model\Event>
-     * @cascade remove
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
+     * /
      */
     protected $stdEvent = null;
 
@@ -133,7 +138,8 @@ class WorkGroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * txNews
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonWorkgroup\Domain\Model\News>
-     * @cascade remove
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
+     * /
      */
     protected $txNews = null;
 
