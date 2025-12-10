@@ -24,7 +24,7 @@ namespace HGON\HgonWorkgroup\Domain\Repository;
  * @package HGON_HgonWorkgroup
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class EventRepository extends \RKW\RkwEvents\Domain\Repository\EventRepository
+class EventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
 
 

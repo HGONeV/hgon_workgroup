@@ -22,7 +22,7 @@ namespace HGON\HgonWorkgroup\Domain\Model;
  * @package HGON_HgonWorkgroup
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Event extends \RKW\RkwEvents\Domain\Model\Event
+class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
     /**
      * txHgonWorkgroupStdevent
