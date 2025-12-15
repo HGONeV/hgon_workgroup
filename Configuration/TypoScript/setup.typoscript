@@ -1,6 +1,9 @@
+
 config.tx_extbase {
     persistence {
         GeorgRinger\News\Domain\Model\News.newRecordStoragePid = 60
+
+        /*
         classes {
             HGON\HgonWorkgroup\Domain\Model\Event {
                 mapping {
@@ -29,19 +32,13 @@ config.tx_extbase {
                     tableName = tx_news_domain_model_news
                 }
             }
-            /*
-            HGON\HgonTemplate\Domain\Model\News {
-                subclasses {
-                    # hier wichtig: index 0 überschreiben für die
-                    # normale News-Ansicht
-                    # 0 == Typ-Auswahl an News-Datensatz
-                    0 = HGON\HgonWorkgroup\Domain\Model\News
-                }
-            }
-            */
         }
+        */
     }
 }
+
+
+
 /*
 plugin.tx_news {
     persistence {

@@ -72,6 +72,6 @@ call_user_func(
 
 
     },
-    $_EXTKEY
+    'hgon_workgroup'
 );
 

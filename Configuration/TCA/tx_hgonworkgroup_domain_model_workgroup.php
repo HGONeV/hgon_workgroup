@@ -17,13 +17,10 @@ return [
         'searchFields' => 'title,description,short_description,address,zip,city,district,bank_institute,bank_iban,bank_bic,image,files,contact_person,wg_event,std_event,tx_news',
         'iconfile' => 'EXT:hgon_workgroup/Resources/Public/Icons/tx_hgonworkgroup_domain_model_workgroup.gif'
     ],
-    'interface' => [
-        'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, title, description, short_description, address, zip, city, district, bank_institute, bank_iban, bank_bic, image, files, contact_person, wg_event, std_event, tx_news',
-    ],
     'types' => [
         '1' => [
             'showitem' => '
-            sys_language_uid, l10n_parent, l10n_diffsource, hidden, image, files, title, description, short_description, address, zip, city, district, bank_institute, bank_iban, bank_bic, contact_person, 
+            sys_language_uid, l10n_diffsource, hidden, image, files, title, description, short_description, address, zip, city, district, bank_institute, bank_iban, bank_bic, contact_person,
             --div--;LLL:EXT:hgon_workgroup/Resources/Private/Language/locallang_db.xlf:tx_hgonworkgroup_domain_model_workgroup.tab_stdevents,
             std_event,
             --div--;LLL:EXT:hgon_workgroup/Resources/Private/Language/locallang_db.xlf:tx_hgonworkgroup_domain_model_workgroup.tab_wgevents,
@@ -53,7 +50,6 @@ return [
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
-            'exclude' => true,
             'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
             'config' => [
                 'type' => 'select',
@@ -117,7 +113,7 @@ return [
                 'rows' => 15,
                 'eval' => 'trim',
             ],
-            
+
         ],
         'short_description' => [
             'exclude' => true,

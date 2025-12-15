@@ -11,9 +11,7 @@ namespace HGON\HgonWorkgroup\Controller;
  *  (c) 2019 Maximilian Fäßler <maximilian@faesslerweb.de>, Fäßler Web UG
  *
  ***/
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
-use RKW\RkwEvents\Helper\DivUtility;
-use \RKW\RkwBasics\Helper\Common;
+use \HGON\HgonTemplate\Utility\Common;
 use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /**
@@ -100,12 +98,14 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     {
         $this->view->assign('workGroup', $workGroup);
 
+
+        /*
         $rkwEventsSettings = $this->getRkwEventsSettings();
         // workaround: Add RkwEvents showPid for event link building
         $this->view->assign('showPid', $rkwEventsSettings['showPid']);
 
         $stdEventToShow = [];
-        /** @var \HGON\HgonWorkgroup\Domain\Model\Event $stdEvent */
+        // @var \HGON\HgonWorkgroup\Domain\Model\Event $stdEvent
         $stdEventIter = 0;
         foreach ($workGroup->getStdEvent() as $stdEvent) {
             // show until two months but minimum two items
@@ -122,7 +122,7 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
 
 
         $wgEventToShow = [];
-        /** @var \HGON\HgonWorkgroup\Domain\Model\Event $wgEvent */
+        // @var \HGON\HgonWorkgroup\Domain\Model\Event $wgEvent
         $wgEventIter = 0;
         foreach ($workGroup->getWgEvent() as $wgEvent) {
             // show until two months but minimum two items
@@ -135,6 +135,7 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             $wgEventIter++;
         }
         $this->view->assign('sortedWorkgroupEventList', DivUtility::groupEventsByMonth($wgEventToShow));
+        */
     }
 
 
@@ -190,19 +191,6 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         // do nothing special here. Just show the search form
     }
 
-
-
-    /**
-     * Returns TYPO3 settings
-     *
-     * @param string $which Which type of settings will be loaded
-     * @return array
-     * @throws \TYPO3\CMS\Extbase\Configuration\Exception\InvalidConfigurationTypeException
-     */
-    protected function getRkwEventsSettings($which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS)
-    {
-        return Common::getTyposcriptConfiguration('Rkwevents', $which);
-    }
 
     /**
      * Returns TYPO3 settings
