@@ -9,11 +9,11 @@ call_user_func(
             'HGON.HgonWorkgroup',
             'List',
             [
-                'WorkGroup' => 'list'
+                \HGON\HgonWorkgroup\Controller\WorkGroupController::class => 'list'
             ],
             // non-cacheable actions
             [
-                'WorkGroup' => 'list'
+                \HGON\HgonWorkgroup\Controller\WorkGroupController::class => 'list'
             ]
         );
 
@@ -21,11 +21,11 @@ call_user_func(
             'HGON.HgonWorkgroup',
             'Detail',
             [
-                'WorkGroup' => 'show'
+                \HGON\HgonWorkgroup\Controller\WorkGroupController::class => 'show'
             ],
             // non-cacheable actions
             [
-                'WorkGroup' => 'show'
+                \HGON\HgonWorkgroup\Controller\WorkGroupController::class => 'show'
             ]
         );
 
@@ -33,11 +33,11 @@ call_user_func(
             'HGON.HgonWorkgroup',
             'Header',
             [
-                'WorkGroup' => 'header'
+                \HGON\HgonWorkgroup\Controller\WorkGroupController::class => 'header'
             ],
             // non-cacheable actions
             [
-                'WorkGroup' => 'header'
+                \HGON\HgonWorkgroup\Controller\WorkGroupController::class => 'header'
             ]
         );
 
@@ -45,11 +45,11 @@ call_user_func(
             'HGON.HgonWorkgroup',
             'Sidebar',
             [
-                'WorkGroup' => 'sidebar'
+                \HGON\HgonWorkgroup\Controller\WorkGroupController::class => 'sidebar'
             ],
             // non-cacheable actions
             [
-                'WorkGroup' => 'sidebar'
+                \HGON\HgonWorkgroup\Controller\WorkGroupController::class => 'sidebar'
             ]
         );
 
@@ -57,17 +57,17 @@ call_user_func(
             'HGON.HgonWorkgroup',
             'Search',
             [
-                'WorkGroup' => 'search'
+                \HGON\HgonWorkgroup\Controller\WorkGroupController::class => 'search'
             ],
             // non-cacheable actions
             [
-                'WorkGroup' => 'search'
+                \HGON\HgonWorkgroup\Controller\WorkGroupController::class => 'search'
             ]
         );
 
 
         // Hooks
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['typo3/class.db_list_extra.inc']['getTable'][] = 'HGON\\HgonWorkgroup\\Hooks\\WorkGroupListHook';
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['typo3/class.db_list_extra.inc']['getTable'][] = \HGON\HgonWorkgroup\Hooks\WorkGroupListHook::class;
 
 
 
