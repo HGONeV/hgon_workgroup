@@ -59,7 +59,7 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * action list
      *
      * @param integer $searchTerm
-     * @return void
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function listAction($searchTerm = null)
     {
@@ -83,6 +83,8 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         } else {
             $this->view->assign('workGroupList', $this->workGroupRepository->findAll());
         }
+
+        return $this->htmlResponse();
     }
 
 
@@ -92,12 +94,13 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      *
      * @param \HGON\HgonWorkgroup\Domain\Model\WorkGroup $workGroup
      * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("workGroup")
-     * @return void
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function showAction(\HGON\HgonWorkgroup\Domain\Model\WorkGroup $workGroup)
     {
         $this->view->assign('workGroup', $workGroup);
 
+        return $this->htmlResponse();
 
         /*
         $rkwEventsSettings = $this->getRkwEventsSettings();
@@ -144,15 +147,20 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * action header
      * Template helper
      *
-     * @return void
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function headerAction()
     {
         $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_hgonworkgroup_detail');
-        $workGroupUid = preg_replace('/[^0-9]/', '', $getParams['workGroup']);
+        // Key kann fehlen oder null sein → sauber abfangen
+        $raw = (string)($getParams['workGroup'] ?? '');
+        // nur Ziffern behalten
+        $workGroupUid = (int)preg_replace('/\D+/', '', $raw);
         $workGroup = $this->workGroupRepository->findByIdentifier(filter_var($workGroupUid, FILTER_SANITIZE_NUMBER_INT));
 
         $this->view->assign('workGroup', $workGroup);
+
+        return $this->htmlResponse();
     }
 
 
@@ -161,13 +169,18 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * action sidebar
      * Template helper
      *
-     * @return void
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function sidebarAction()
     {
         $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_hgonworkgroup_detail');
 
-        $workGroupUid = preg_replace('/[^0-9]/', '', $getParams['workGroup']);
+
+        // fehlenden oder null-Wert robust abfangen
+        $raw = (string)($getParams['workGroup'] ?? '');
+
+        // nur Ziffern behalten, anschließend sauber als int
+        $workGroupUid = (int)preg_replace('/\D+/', '', $raw);
         $workGroup = $this->workGroupRepository->findByIdentifier(filter_var($workGroupUid, FILTER_SANITIZE_NUMBER_INT));
 
         $this->view->assign('workGroup', $workGroup);
@@ -177,6 +190,8 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
         }
 
         $this->view->assign('settingsHgonTemplate', $this->getHgonTemplateSettings());
+
+        return $this->htmlResponse();
     }
 
 
@@ -184,11 +199,13 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     /**
      * action search
      *
-     * @return void
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function searchAction()
     {
         // do nothing special here. Just show the search form
+
+        return $this->htmlResponse();
     }
 
 

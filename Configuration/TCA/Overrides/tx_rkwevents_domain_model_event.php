@@ -1,5 +1,5 @@
 <?php
-defined('TYPO3_MODE') || die('Access denied.');
+defined('TYPO3') or die("Access denied.");
 // extend tx_news
 $tempColumns = [
     "tx_hgon_workgroup_wgevent" => [

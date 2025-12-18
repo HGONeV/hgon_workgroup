@@ -1,12 +1,12 @@
 <?php
-defined('TYPO3_MODE') || die('Access denied.');
+defined('TYPO3') or die("Access denied.");
 
 call_user_func(
     function($extKey)
     {
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'HGON.HgonWorkgroup',
+            $extKey,
             'List',
             [
                 \HGON\HgonWorkgroup\Controller\WorkGroupController::class => 'list'
@@ -18,7 +18,7 @@ call_user_func(
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'HGON.HgonWorkgroup',
+            $extKey,
             'Detail',
             [
                 \HGON\HgonWorkgroup\Controller\WorkGroupController::class => 'show'
@@ -30,7 +30,7 @@ call_user_func(
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'HGON.HgonWorkgroup',
+            $extKey,
             'Header',
             [
                 \HGON\HgonWorkgroup\Controller\WorkGroupController::class => 'header'
@@ -42,7 +42,7 @@ call_user_func(
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'HGON.HgonWorkgroup',
+            $extKey,
             'Sidebar',
             [
                 \HGON\HgonWorkgroup\Controller\WorkGroupController::class => 'sidebar'
@@ -54,7 +54,7 @@ call_user_func(
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'HGON.HgonWorkgroup',
+            $extKey,
             'Search',
             [
                 \HGON\HgonWorkgroup\Controller\WorkGroupController::class => 'search'
@@ -64,6 +64,7 @@ call_user_func(
                 \HGON\HgonWorkgroup\Controller\WorkGroupController::class => 'search'
             ]
         );
+
 
 
         // Hooks
