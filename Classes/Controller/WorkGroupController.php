@@ -11,47 +11,43 @@ namespace HGON\HgonWorkgroup\Controller;
  *  (c) 2019 Maximilian Fäßler <maximilian@faesslerweb.de>, Fäßler Web UG
  *
  ***/
-use \HGON\HgonTemplate\Utility\Common;
-use \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use HGON\HgonTemplate\Utility\Common;
+use TYPO3\CMS\Extbase\Annotation\IgnoreValidation;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /**
  * WorkGroupController
  */
 class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
-    /**
-     * @var \HGON\HgonWorkgroup\Domain\Repository\WorkGroupRepository
-     */
-    protected $workGroupRepository;
+    protected \HGON\HgonWorkgroup\Domain\Repository\WorkGroupRepository $workGroupRepository;
 
-    /**
-     * @var \HGON\HgonWorkgroup\Domain\Repository\EventRepository
-     */
-    protected $eventRepository;
+    protected \HGON\HgonWorkgroup\Domain\Repository\EventRepository $eventRepository;
 
-    /**
-     * @var \HGON\HgonWorkgroup\Domain\Repository\NewsRepository
-     */
-    protected $newsRepository;
+    protected \HGON\HgonWorkgroup\Domain\Repository\NewsRepository $newsRepository;
 
-    /**
-     * @param \HGON\HgonWorkgroup\Domain\Repository\WorkGroupRepository $workGroupRepository
-     */
-    public function injectWorkGroupRepository(\HGON\HgonWorkgroup\Domain\Repository\WorkGroupRepository $workGroupRepository): void {
+    public function __construct(
+        ?\HGON\HgonWorkgroup\Domain\Repository\WorkGroupRepository $workGroupRepository = null,
+        ?\HGON\HgonWorkgroup\Domain\Repository\EventRepository $eventRepository = null,
+        ?\HGON\HgonWorkgroup\Domain\Repository\NewsRepository $newsRepository = null
+    ) {
+        $this->workGroupRepository = $workGroupRepository ?? \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\HGON\HgonWorkgroup\Domain\Repository\WorkGroupRepository::class);
+        $this->eventRepository = $eventRepository ?? \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\HGON\HgonWorkgroup\Domain\Repository\EventRepository::class);
+        $this->newsRepository = $newsRepository ?? \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\HGON\HgonWorkgroup\Domain\Repository\NewsRepository::class);
+    }
+
+    public function injectWorkGroupRepository(\HGON\HgonWorkgroup\Domain\Repository\WorkGroupRepository $workGroupRepository): void
+    {
         $this->workGroupRepository = $workGroupRepository;
     }
 
-    /**
-     * @param \HGON\HgonWorkgroup\Domain\Repository\EventRepository $eventRepository
-     */
-    public function injectEventRepository(\HGON\HgonWorkgroup\Domain\Repository\EventRepository $eventRepository): void {
+    public function injectEventRepository(\HGON\HgonWorkgroup\Domain\Repository\EventRepository $eventRepository): void
+    {
         $this->eventRepository = $eventRepository;
     }
 
-    /**
-     * @param \HGON\HgonWorkgroup\Domain\Repository\NewsRepository $newsRepository
-     */
-    public function injectNewsRepository(\HGON\HgonWorkgroup\Domain\Repository\NewsRepository $newsRepository): void {
+    public function injectNewsRepository(\HGON\HgonWorkgroup\Domain\Repository\NewsRepository $newsRepository): void
+    {
         $this->newsRepository = $newsRepository;
     }
 
@@ -65,7 +61,7 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     {
         if (!$searchTerm) {
             // if called by search-plugin
-            $request = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_hgonworkgroup_search');
+            $request = $this->request->getQueryParams()['tx_hgonworkgroup_search'] ?? null;
             if (is_array($request) && array_key_exists('searchTerm', $request)) {
                 $searchTerm = intval($request['searchTerm']);
             }
@@ -75,7 +71,7 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
             $workGroup = $this->workGroupRepository->findOneByZip($searchTerm);
             // if $searchTerm is set and something was found -> redirect to view
             if ($workGroup) {
-                $this->redirect('show', null, null, array('workGroup' => $workGroup), $this->settings['showPid']);
+                return $this->redirect('show', null, null, array('workGroup' => $workGroup), $this->settings['showPid']);
             }
 
             // if no workGroup was found: A message will be shown via template
@@ -93,52 +89,14 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      * action show
      *
      * @param \HGON\HgonWorkgroup\Domain\Model\WorkGroup $workGroup
-     * @TYPO3\CMS\Extbase\Annotation\IgnoreValidation("workGroup")
      * @return \Psr\Http\Message\ResponseInterface
      */
+    #[IgnoreValidation(['argumentName' => 'workGroup'])]
     public function showAction(\HGON\HgonWorkgroup\Domain\Model\WorkGroup $workGroup)
     {
         $this->view->assign('workGroup', $workGroup);
 
         return $this->htmlResponse();
-
-        /*
-        $rkwEventsSettings = $this->getRkwEventsSettings();
-        // workaround: Add RkwEvents showPid for event link building
-        $this->view->assign('showPid', $rkwEventsSettings['showPid']);
-
-        $stdEventToShow = [];
-        // @var \HGON\HgonWorkgroup\Domain\Model\Event $stdEvent
-        $stdEventIter = 0;
-        foreach ($workGroup->getStdEvent() as $stdEvent) {
-            // show until two months but minimum two items
-            if (
-                $stdEvent->getStart() > time()
-                && $stdEvent->getStart() < strtotime(date("Y-m-d", strtotime("+2 months")))
-            ) {
-
-                $stdEventToShow[] = $stdEvent;
-            }
-            $stdEventIter++;
-        }
-        $this->view->assign('sortedEventList', DivUtility::groupEventsByMonth($stdEventToShow));
-
-
-        $wgEventToShow = [];
-        // @var \HGON\HgonWorkgroup\Domain\Model\Event $wgEvent
-        $wgEventIter = 0;
-        foreach ($workGroup->getWgEvent() as $wgEvent) {
-            // show until two months but minimum two items
-            if (
-                $wgEvent->getStart() > time()
-                && $wgEvent->getStart() < strtotime(date("Y-m-d", strtotime("+2 months")))
-            ) {
-                $wgEventToShow[] = $wgEvent;
-            }
-            $wgEventIter++;
-        }
-        $this->view->assign('sortedWorkgroupEventList', DivUtility::groupEventsByMonth($wgEventToShow));
-        */
     }
 
 
@@ -151,7 +109,7 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      */
     public function headerAction()
     {
-        $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_hgonworkgroup_detail');
+        $getParams = $this->request->getQueryParams()['tx_hgonworkgroup_detail'] ?? [];
         // Key kann fehlen oder null sein → sauber abfangen
         $raw = (string)($getParams['workGroup'] ?? '');
         // nur Ziffern behalten
@@ -173,7 +131,7 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
      */
     public function sidebarAction()
     {
-        $getParams = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('tx_hgonworkgroup_detail');
+        $getParams = $this->request->getQueryParams()['tx_hgonworkgroup_detail'] ?? [];
 
 
         // fehlenden oder null-Wert robust abfangen

@@ -12,6 +12,7 @@ namespace HGON\HgonWorkgroup\ViewHelpers;
  *
  * The TYPO3 project - inspiring people to share!
  */
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 /**
@@ -22,24 +23,38 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  * @package HGON_HgonWorkgroup
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class CheckDateOfEventListViewHelper extends AbstractViewHelper
+final class CheckDateOfEventListViewHelper extends AbstractViewHelper
 {
-    /**
-     * Checks if minimum one event in list is not expired
-     *
-     * @param array | \TYPO3\CMS\Extbase\Persistence\ObjectStorage $eventList
-     *
-     * @return boolean
-     */
-    public function render($eventList)
+    public function initializeArguments(): void
     {
-        // if minimum one element is not expired, return true
+        $this->registerArgument(
+            'eventList',
+            'iterable',
+            'Array oder ObjectStorage von Events',
+            true
+        );
+    }
+
+    public function render(): bool
+    {
+        /** @var iterable $eventList */
+        $eventList = $this->arguments['eventList'];
+
         foreach ($eventList as $event) {
+            $date = null;
+            if (method_exists($event, 'getEnddate') && method_exists($event, 'getStartdate')) {
+                $date = $event->getEnddate() ?: $event->getStartdate();
+                if ($date instanceof \DateTimeInterface && $date->getTimestamp() >= time()) {
+                    return true;
+                }
+                continue;
+            }
 
-            $date = $event->getEnd() ? $event->getEnd() : $event->getStart();
+            if (method_exists($event, 'getStart')) {
+                $date = $event->getEnd() ?: $event->getStart();
+            }
 
-            /** @var \RKW\RkwEvents\Domain\Model\Event $event */
-            if ($date >= time()) {
+            if ((int)$date >= time()) {
                 return true;
             }
         }

@@ -1,6 +1,11 @@
-{namespace hgon=HGON\HgonTemplate\ViewHelpers}
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:hgon="http://typo3.org/ns/HGON/HgonTemplate/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
 <f:for each="{workGroup.contactPerson}" as="author">
     <f:if condition="{author}">
         <f:render partial="ContactPerson" arguments="{_all}" />
     </f:if>
 </f:for>
+</html>

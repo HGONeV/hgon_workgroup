@@ -1,11 +1,14 @@
 <?php
+
+use TYPO3\CMS\Core\Resource\File;
+
 return [
     'ctrl' => [
         'title' => 'LLL:EXT:hgon_workgroup/Resources/Private/Language/locallang_db.xlf:tx_hgonworkgroup_domain_model_workgroup',
         'label' => 'title',
+        'rootLevel' => 0,
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
         'versioningWS' => true,
         'languageField' => 'sys_language_uid',
         'transOrigPointerField' => 'l10n_parent',
@@ -33,19 +36,9 @@ return [
     'columns' => [
         'sys_language_uid' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
             'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'special' => 'languages',
-                'items' => [
-                    [
-                        'LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages',
-                        -1,
-                        'flags-multiple'
-                    ]
-                ],
-                'default' => 0,
+                'type' => 'language',
             ],
         ],
         'l10n_parent' => [
@@ -56,7 +49,10 @@ return [
                 'renderType' => 'selectSingle',
                 'default' => 0,
                 'items' => [
-                    ['', 0],
+                    [
+                        'label' => '',
+                        'value' => 0,
+                    ],
                 ],
                 'foreign_table' => 'tx_hgonworkgroup_domain_model_workgroup',
                 'foreign_table_where' => 'AND tx_hgonworkgroup_domain_model_workgroup.pid=###CURRENT_PID### AND tx_hgonworkgroup_domain_model_workgroup.sys_language_uid IN (-1,0)',
@@ -81,9 +77,10 @@ return [
             'config' => [
                 'type' => 'check',
                 'items' => [
-                    '1' => [
-                        '0' => 'LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:labels.enabled'
-                    ]
+                    [
+                        'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.enabled',
+                        'value' => 1,
+                    ],
                 ],
             ],
         ],
@@ -190,46 +187,40 @@ return [
         'image' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:hgon_workgroup/Resources/Private/Language/locallang_db.xlf:tx_hgonworkgroup_domain_model_workgroup.image',
-            'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-                'image',
-                array(
-                    'minitems' => 0,
-                    'maxitems' => 1,
-                    'overrideChildTca' => [
-                        'types' => [
-                            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
-                                'showitem' => '
-                    --palette--;LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                    --palette--;;filePalette'
-                            ],
+            'config' => [
+                'type' => 'file',
+                'allowed' => 'jpg,jpeg,png,gif',
+                'minitems' => 0,
+                'maxitems' => 1,
+                'overrideChildTca' => [
+                    'types' => [
+                        File::FILETYPE_IMAGE => [
+                            'showitem' => '
+                        --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                        --palette--;;filePalette',
                         ],
                     ],
-                ),
-                'jpg, jpeg, png, gif'
-            ),
-
+                ],
+            ],
         ],
         'files' => [
             'exclude' => 0,
             'label' => 'LLL:EXT:hgon_workgroup/Resources/Private/Language/locallang_db.xlf:tx_hgonworkgroup_domain_model_workgroup.files',
-            'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-                'file',
-                array(
-                    'minitems' => 0,
-                    'maxitems' => 9999,
-                    'overrideChildTca' => [
-                        'types' => [
-                            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
-                                'showitem' => '
-                            --palette--;LLL:EXT:lang/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
-                            --palette--;;filePalette'
-                            ],
+            'config' => [
+                'type' => 'file',
+                'allowed' => 'pdf',
+                'minitems' => 0,
+                'maxitems' => 9999,
+                'overrideChildTca' => [
+                    'types' => [
+                        File::FILETYPE_APPLICATION => [
+                            'showitem' => '
+                        --palette--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette;imageoverlayPalette,
+                        --palette--;;filePalette',
                         ],
                     ],
-                ),
-                'pdf'
-            ),
-
+                ],
+            ],
         ],
         'contact_person' => [
             'exclude' => true,
@@ -249,34 +240,26 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:hgon_workgroup/Resources/Private/Language/locallang_db.xlf:tx_hgonworkgroup_domain_model_workgroup.event',
             'config' => [
-                'type' => 'inline',
-                'foreign_table' => 'tx_rkwevents_domain_model_event',
-                'foreign_field' => 'tx_hgon_workgroup_wgevent',
+                'type' => 'select',
+                'renderType' => 'selectMultipleSideBySide',
+                'foreign_table' => 'tx_sfeventmgt_domain_model_event',
+                'foreign_table_where' => 'AND tx_sfeventmgt_domain_model_event.deleted = 0 AND tx_sfeventmgt_domain_model_event.hidden = 0 ORDER BY tx_sfeventmgt_domain_model_event.startdate ASC, tx_sfeventmgt_domain_model_event.title ASC',
                 'maxitems' => 9999,
-                'appearance' => [
-                    'collapseAll' => 1,
-                    'levelLinksPosition' => 'top',
-                    'showSynchronizationLink' => 1,
-                    'showPossibleLocalizationRecords' => 1,
-                    'showAllLocalizationLink' => 1
-                ],
+                'minitems' => 0,
+                'size' => 10,
             ],
         ],
         'std_event' => [
             'exclude' => true,
             'label' => 'LLL:EXT:hgon_workgroup/Resources/Private/Language/locallang_db.xlf:tx_hgonworkgroup_domain_model_workgroup.event',
             'config' => [
-                'type' => 'inline',
-                'foreign_table' => 'tx_rkwevents_domain_model_event',
-                'foreign_field' => 'tx_hgon_workgroup_stdevent',
+                'type' => 'select',
+                'renderType' => 'selectMultipleSideBySide',
+                'foreign_table' => 'tx_sfeventmgt_domain_model_event',
+                'foreign_table_where' => 'AND tx_sfeventmgt_domain_model_event.deleted = 0 AND tx_sfeventmgt_domain_model_event.hidden = 0 ORDER BY tx_sfeventmgt_domain_model_event.startdate ASC, tx_sfeventmgt_domain_model_event.title ASC',
                 'maxitems' => 9999,
-                'appearance' => [
-                    'collapseAll' => 1,
-                    'levelLinksPosition' => 'top',
-                    'showSynchronizationLink' => 1,
-                    'showPossibleLocalizationRecords' => 1,
-                    'showAllLocalizationLink' => 1
-                ],
+                'minitems' => 0,
+                'size' => 10,
             ],
         ],
         /*

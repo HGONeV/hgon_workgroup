@@ -36,19 +36,25 @@ call_user_func(
 
 
         //=================================================================
-        // Add Flexform
+        // Add Flexform (CType)
         //=================================================================
         $extensionName = strtolower(\TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($extKey));
-
         $pluginName = strtolower('Search');
         $pluginSignature = $extensionName.'_'.$pluginName;
-        $TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignature] = 'layout,select_key,pages';
-        $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
-        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:'.$extKey . '/Configuration/FlexForms/Search.xml');
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
+            $pluginSignature,
+            'FILE:EXT:'.$extKey . '/Configuration/FlexForms/Search.xml',
+            $pluginSignature
+        );
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
+            'tt_content',
+            'pi_flexform',
+            $pluginSignature,
+            'after:header'
+        );
 
 
 
     },
     'hgon_workgroup'
 );
-

@@ -14,7 +14,8 @@ call_user_func(
             // non-cacheable actions
             [
                 \HGON\HgonWorkgroup\Controller\WorkGroupController::class => 'list'
-            ]
+            ],
+            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
@@ -26,7 +27,8 @@ call_user_func(
             // non-cacheable actions
             [
                 \HGON\HgonWorkgroup\Controller\WorkGroupController::class => 'show'
-            ]
+            ],
+            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
@@ -38,7 +40,8 @@ call_user_func(
             // non-cacheable actions
             [
                 \HGON\HgonWorkgroup\Controller\WorkGroupController::class => 'header'
-            ]
+            ],
+            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
@@ -50,7 +53,8 @@ call_user_func(
             // non-cacheable actions
             [
                 \HGON\HgonWorkgroup\Controller\WorkGroupController::class => 'sidebar'
-            ]
+            ],
+            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
@@ -62,17 +66,12 @@ call_user_func(
             // non-cacheable actions
             [
                 \HGON\HgonWorkgroup\Controller\WorkGroupController::class => 'search'
-            ]
+            ],
+            \TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
         );
-
-
-
-        // Hooks
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['typo3/class.db_list_extra.inc']['getTable'][] = \HGON\HgonWorkgroup\Hooks\WorkGroupListHook::class;
 
 
 
     },
     'hgon_workgroup'
 );
-

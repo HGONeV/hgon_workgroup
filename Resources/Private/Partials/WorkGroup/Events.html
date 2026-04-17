@@ -1,40 +1,43 @@
-{namespace hgon=HGON\HgonTemplate\ViewHelpers}
-{namespace workgroup=HGON\HgonWorkgroup\ViewHelpers}
-{namespace rkwEvents=RKW\RkwEvents\ViewHelpers}
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:hgon="http://typo3.org/ns/HGON/HgonTemplate/ViewHelpers"
+    xmlns:workgroup="http://typo3.org/ns/HGON/HgonWorkgroup/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
 
-
-<f:if condition="<workgroup:checkDateOfEventList eventList='{eventList}' />">
+<f:if condition="{workgroup:checkDateOfEventList(eventList: eventList)}">
     <f:then>
         <div class="box__content">
             <div class="flex-container space-between gutter">
                 <!-- further boxes with events -->
-                <f:for each="<hgon:createRows list='{0: eventList}' itemsPerRow='2' />" as="row" iteration="iter">
+                <f:for each="{hgon:createRows(list: {0: eventList}, itemsPerRow: 2)}" as="row" iteration="iter">
                     <f:comment><!-- maximum one row --></f:comment>
                     <f:if condition="{iter.isFirst}">
                         <f:for each="{row}" as="event">
-                            <f:if condition="<rkwEvents:notFinishedEvents event='{event}' />">
-                                <div class="flex-item c-<f:cObject typoscriptObjectPath='lib.math' data='12/<f:count>{row}</f:count>' />">
-                                    <article class="item item-event">
-                                        <header class="item__header">
-                                            <svg width="48" height="48"><use xlink:href="#ui-event"></use></svg>
-                                            <time datetime="{event.start -> f:format.date(format:'d.m.Y')}">{event.start -> f:format.date(format:"d.m.Y")}</time>
-                                            <span class="">{event.place.city}</span>
-                                        </header>
+                            <div class="flex-item c-<f:cObject typoscriptObjectPath='lib.math' data='12/<f:count>{row}</f:count>' />">
+                                <article class="item item-event">
+                                    <header class="item__header">
+                                        <svg width="48" height="48"><use xlink:href="#ui-event"></use></svg>
+                                        <time datetime="{event.startdate -> f:format.date(format:'Y-m-d')}">{event.startdate -> f:format.date(format:'d.m.Y')}</time>
+                                        <span class="">
+                                            <f:if condition="{event.location.city}">
+                                                <f:then>{event.location.city}</f:then>
+                                                <f:else>Online</f:else>
+                                            </f:if>
+                                        </span>
+                                    </header>
 
-                                        <div class="item__content">
-                                            <h3>
-                                                {event.title}
-                                            </h3>
-                                        </div>
+                                    <div class="item__content">
+                                        <h3>{event.title}</h3>
+                                    </div>
 
-                                        <footer class="item__footer">
-                                            <f:link.action action="show" controller="Event" pluginName="Pi1" extensionName="RkwEvents" pageUid="{showPid}" arguments="{event : event}" class="link link--goto" title="{event.title}">
-                                                Details
-                                            </f:link.action>
-                                        </footer>
-                                    </article>
-                                </div>
-                            </f:if>
+                                    <footer class="item__footer">
+                                        <f:link.action action="detail" controller="Event" pluginName="Pieventdetail" extensionName="SfEventMgt" pageUid="{settings.event.showPid}" arguments="{event: event}" class="link link--goto" title="{event.title}">
+                                            Details
+                                        </f:link.action>
+                                    </footer>
+                                </article>
+                            </div>
                         </f:for>
                     </f:if>
                 </f:for>
@@ -49,3 +52,5 @@
         </div>
     </f:else>
 </f:if>
+
+</html>

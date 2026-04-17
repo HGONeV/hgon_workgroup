@@ -1,6 +1,8 @@
 <?php
 namespace HGON\HgonWorkgroup\Domain\Model;
 
+use TYPO3\CMS\Extbase\Annotation\ORM\Cascade;
+
 /***
  *
  * This file is part of the "HGON WorkGroup" Extension for TYPO3 CMS.
@@ -91,27 +93,24 @@ class WorkGroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * image
      *
      * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
-     * /
      */
+    #[Cascade(['value' => 'remove'])]
     protected $image = null;
 
     /**
      * files
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
-     * /
      */
+    #[Cascade(['value' => 'remove'])]
     protected $files = null;
 
     /**
      * contactPerson
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonWorkgroup\Domain\Model\Authors>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
-     * /
      */
+    #[Cascade(['value' => 'remove'])]
     protected $contactPerson = null;
 
     /**
@@ -119,9 +118,8 @@ class WorkGroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * (workGroupEvent)
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonWorkgroup\Domain\Model\Event>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
-     * /
      */
+    #[Cascade(['value' => 'remove'])]
     protected $wgEvent = null;
 
     /**
@@ -129,18 +127,16 @@ class WorkGroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * (standardEvent)
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonWorkgroup\Domain\Model\Event>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
-     * /
      */
+    #[Cascade(['value' => 'remove'])]
     protected $stdEvent = null;
 
     /**
      * txNews
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonWorkgroup\Domain\Model\News>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
-     * /
      */
+    #[Cascade(['value' => 'remove'])]
     protected $txNews = null;
 
 

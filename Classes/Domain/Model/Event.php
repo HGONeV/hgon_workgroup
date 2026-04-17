@@ -1,151 +1,80 @@
 <?php
 
 namespace HGON\HgonWorkgroup\Domain\Model;
-/*
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 3
- * of the License, or any later version.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
- */
 
-/**
- * Class Event
- *
- * @author Maximilian Fäßler <maximilian@faesslerweb.de>
- * @copyright HGON
- * @package HGON_HgonWorkgroup
- * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
- */
-class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+
+class Event extends \DERHANSEN\SfEventMgt\Domain\Model\Event
 {
     /**
-     * txHgonWorkgroupStdevent
-     *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonWorkgroup\Domain\Model\WorkGroup>
+     * @var ObjectStorage<\HGON\HgonWorkgroup\Domain\Model\WorkGroup>
      */
-    protected $txHgonWorkgroupStdevent = null;
+    protected ObjectStorage $txHgonWorkgroupStdevent;
 
     /**
-     * txHgonWorkgroupWgevent
-     *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonWorkgroup\Domain\Model\WorkGroup>
+     * @var ObjectStorage<\HGON\HgonWorkgroup\Domain\Model\WorkGroup>
      */
-    protected $txHgonWorkgroupWgevent = null;
+    protected ObjectStorage $txHgonWorkgroupWgevent;
 
-    /**
-     * __construct
-     */
-    public function __construct()
+    public function initializeObject(): void
     {
-        parent::__construct();
-        //Do not remove the next line: It would break the functionality
-        $this->initStorageObjects();
+        parent::initializeObject();
+        $this->txHgonWorkgroupStdevent = new ObjectStorage();
+        $this->txHgonWorkgroupWgevent = new ObjectStorage();
     }
 
-    /**
-     * Initializes all ObjectStorage properties
-     * Do not modify this method!
-     * It will be rewritten on each save in the extension builder
-     * You may modify the constructor of this class instead
-     *
-     * @return void
-     */
-    protected function initStorageObjects()
+    public function addTxHgonWorkgroupStdevent(\HGON\HgonWorkgroup\Domain\Model\WorkGroup $workGroup): void
     {
-        $this->txHgonWorkgroupStdeventStdevent = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-        $this->txHgonWorkgroupStdeventWgevent = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->txHgonWorkgroupStdevent->attach($workGroup);
     }
 
-    /**
-     * Adds a $txHgonWorkgroupStdevent
-     *
-     * @param \HGON\HgonWorkgroup\Domain\Model\WorkGroup $txHgonWorkgroupStdevent
-     * @return void
-     */
-    public function addTxHgonWorkgroupStdevent(\HGON\HgonWorkgroup\Domain\Model\WorkGroup $txHgonWorkgroupStdevent)
+    public function removeTxHgonWorkgroupStdevent(\HGON\HgonWorkgroup\Domain\Model\WorkGroup $workGroup): void
     {
-        $this->txHgonWorkgroupStdevent->attach($txHgonWorkgroupStdevent);
+        $this->txHgonWorkgroupStdevent->detach($workGroup);
     }
 
-    /**
-     * Removes a $txHgonWorkgroupStdevent
-     *
-     * @param \HGON\HgonWorkgroup\Domain\Model\WorkGroup $txHgonWorkgroupStdeventToRemove The Worktpiü to be removed
-     * @return void
-     */
-    public function removeTxHgonWorkgroupStdevent(\HGON\HgonWorkgroup\Domain\Model\WorkGroup $txHgonWorkgroupStdeventToRemove)
-    {
-        $this->txHgonWorkgroupStdevent->detach($txHgonWorkgroupStdeventToRemove);
-    }
-
-    /**
-     * Returns the $txHgonWorkgroupStdevent
-     *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonWorkgroup\Domain\Model\WorkGroup> $txHgonWorkgroupStdevent
-     */
-    public function getTxHgonWorkgroupStdevent()
+    public function getTxHgonWorkgroupStdevent(): ObjectStorage
     {
         return $this->txHgonWorkgroupStdevent;
     }
 
-    /**
-     * Sets the $txHgonWorkgroupStdevent
-     *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonWorkgroup\Domain\Model\WorkGroup> $txHgonWorkgroupStdevent
-     * @return void
-     */
-    public function setTxHgonWorkgroupStdevent(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $txHgonWorkgroupStdevent)
+    public function setTxHgonWorkgroupStdevent(ObjectStorage $workGroups): void
     {
-        $this->txHgonWorkgroupStdevent = $txHgonWorkgroupStdevent;
+        $this->txHgonWorkgroupStdevent = $workGroups;
     }
 
-    /**
-     * Adds a $txHgonWorkgroupWgevent
-     *
-     * @param \HGON\HgonWorkgroup\Domain\Model\WorkGroup $txHgonWorkgroupWgevent
-     * @return void
-     */
-    public function addTxHgonWorkgroupWgevent(\HGON\HgonWorkgroup\Domain\Model\WorkGroup $txHgonWorkgroupWgevent)
+    public function addTxHgonWorkgroupWgevent(\HGON\HgonWorkgroup\Domain\Model\WorkGroup $workGroup): void
     {
-        $this->txHgonWorkgroupWgevent->attach($txHgonWorkgroupWgevent);
+        $this->txHgonWorkgroupWgevent->attach($workGroup);
     }
 
-    /**
-     * Removes a $txHgonWorkgroupWgevent
-     *
-     * @param \HGON\HgonWorkgroup\Domain\Model\WorkGroup $txHgonWorkgroupWgeventToRemove The Worktpiü to be removed
-     * @return void
-     */
-    public function removeTxHgonWorkgroup(\HGON\HgonWorkgroup\Domain\Model\WorkGroup $txHgonWorkgroupWgeventToRemove)
+    public function removeTxHgonWorkgroup(\HGON\HgonWorkgroup\Domain\Model\WorkGroup $workGroup): void
     {
-        $this->txHgonWorkgroupWgevent->detach($txHgonWorkgroupWgeventToRemove);
+        $this->txHgonWorkgroupWgevent->detach($workGroup);
     }
 
-    /**
-     * Returns the $txHgonWorkgroupWgevent
-     *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonWorkgroup\Domain\Model\WorkGroup> $txHgonWorkgroupWgevent
-     */
-    public function getTxHgonWorkgroup()
+    public function getTxHgonWorkgroup(): ObjectStorage
     {
         return $this->txHgonWorkgroupWgevent;
     }
 
-    /**
-     * Sets the $txHgonWorkgroupWgevent
-     *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonWorkgroup\Domain\Model\WorkGroup> $txHgonWorkgroupWgevent
-     * @return void
-     */
-    public function setTxHgonWorkgroup(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $txHgonWorkgroupWgevent)
+    public function setTxHgonWorkgroup(ObjectStorage $workGroups): void
     {
-        $this->txHgonWorkgroupWgevent = $txHgonWorkgroupWgevent;
+        $this->txHgonWorkgroupWgevent = $workGroups;
     }
 
+    public function getStart(): int
+    {
+        return $this->getStartdate()?->getTimestamp() ?? 0;
+    }
+
+    public function getEnd(): int
+    {
+        return $this->getEnddate()?->getTimestamp() ?? 0;
+    }
+
+    public function getPlace(): ?\DERHANSEN\SfEventMgt\Domain\Model\Location
+    {
+        return $this->getLocation();
+    }
 }

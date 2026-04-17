@@ -8,9 +8,12 @@ $tempCols = [
 		'config' => [
 			'type' => 'select',
 			'renderType' => 'selectSingle',
-			'items' => [
-				['', '0']
-			],
+            'items' => [
+                [
+                    'label' => '',
+                    'value' => '0',
+                ],
+            ],
 			'foreign_table' => 'tx_hgonworkgroup_domain_model_workgroup',
 			'foreign_table_where' => ' ORDER BY tx_hgonworkgroup_domain_model_workgroup.title',
 			'minitems' => 0,

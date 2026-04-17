@@ -19,6 +19,10 @@ plugin.tx_hgonworkgroup {
         showPid =
         # cat=plugin.tx_hgonworkgroup; type=integer; label=PageNum for AJAX-requests
         ajaxTypeNum = 1557318613
+        event {
+            # cat=plugin.tx_hgonworkgroup; type=integer; label=PID for showing events
+            showPid =
+        }
         news {
             # cat=plugin.tx_hgonworkgroup; type=integer; label=PID for showing news
             showPid =

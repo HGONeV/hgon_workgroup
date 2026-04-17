@@ -21,8 +21,8 @@ CREATE TABLE tx_hgonworkgroup_domain_model_workgroup (
     image int(11) unsigned NOT NULL default '0',
     files int(11) unsigned NOT NULL default '0',
 	contact_person int(11) unsigned DEFAULT '0' NOT NULL,
-	wg_event int(11) unsigned DEFAULT '0' NOT NULL,
-	std_event int(11) unsigned DEFAULT '0' NOT NULL,
+	wg_event text,
+	std_event text,
 	tx_news int(11) DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
@@ -58,16 +58,15 @@ CREATE TABLE tx_hgonworkgroup_domain_model_workgroup (
 #
 CREATE TABLE tx_rkwauthors_domain_model_authors (
 
-	workgroup int(11) unsigned DEFAULT '0' NOT NULL,
-
+	workgroup int(11) unsigned DEFAULT '0' NOT NULL
 );
 
 #
-# Table structure for table 'tx_rkwevents_domain_model_event'
+# Table structure for table 'tx_sfeventmgt_domain_model_event'
 #
-CREATE TABLE tx_rkwevents_domain_model_event (
-    tx_hgon_workgroup_stdevent int(11) unsigned DEFAULT '0' NOT NULL,
-	tx_hgon_workgroup_wgevent int(11) unsigned DEFAULT '0' NOT NULL,
+CREATE TABLE tx_sfeventmgt_domain_model_event (
+    tx_hgon_workgroup_stdevent text,
+	tx_hgon_workgroup_wgevent text
 );
 
 
@@ -97,5 +96,5 @@ CREATE TABLE tx_hgonworkgroup_domain_model_workgroup_news_mm (
 #
 CREATE TABLE be_groups (
 	tx_hgonworkgroup_workgroup int(11) unsigned NOT NULL default '0',
-	tx_hgonworkgroup_admingroup int(11) unsigned NOT NULL default '0',
+	tx_hgonworkgroup_admingroup int(11) unsigned NOT NULL default '0'
 );

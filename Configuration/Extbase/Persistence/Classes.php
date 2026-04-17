@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 return [
     \HGON\HgonWorkgroup\Domain\Model\Event::class => [
-        'tableName' => 'tx_rkwevents_domain_model_event',
+        'tableName' => 'tx_sfeventmgt_domain_model_event',
     ],
 
     \HGON\HgonWorkgroup\Domain\Model\Authors::class => [
@@ -22,5 +22,4 @@ return [
         'recordType' => 0,
     ],
 ];
-
 
