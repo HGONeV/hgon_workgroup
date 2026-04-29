@@ -7,7 +7,7 @@ return [
     ],
 
     \HGON\HgonWorkgroup\Domain\Model\Authors::class => [
-        'tableName' => 'tx_rkwauthors_domain_model_authors',
+        'tableName' => 'tx_mdnewsauthor_domain_model_newsauthor',
     ],
 
     // News: recordType 0 auf eigenes Model umbiegen
@@ -22,4 +22,3 @@ return [
         'recordType' => 0,
     ],
 ];
-

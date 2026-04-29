@@ -54,14 +54,6 @@ CREATE TABLE tx_hgonworkgroup_domain_model_workgroup (
 );
 
 #
-# Table structure for table 'tx_rkwauthors_domain_model_authors'
-#
-CREATE TABLE tx_rkwauthors_domain_model_authors (
-
-	workgroup int(11) unsigned DEFAULT '0' NOT NULL
-);
-
-#
 # Table structure for table 'tx_sfeventmgt_domain_model_event'
 #
 CREATE TABLE tx_sfeventmgt_domain_model_event (

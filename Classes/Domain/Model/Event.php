@@ -48,19 +48,34 @@ class Event extends \DERHANSEN\SfEventMgt\Domain\Model\Event
         $this->txHgonWorkgroupWgevent->attach($workGroup);
     }
 
-    public function removeTxHgonWorkgroup(\HGON\HgonWorkgroup\Domain\Model\WorkGroup $workGroup): void
+    public function removeTxHgonWorkgroupWgevent(\HGON\HgonWorkgroup\Domain\Model\WorkGroup $workGroup): void
     {
         $this->txHgonWorkgroupWgevent->detach($workGroup);
     }
 
-    public function getTxHgonWorkgroup(): ObjectStorage
+    public function getTxHgonWorkgroupWgevent(): ObjectStorage
     {
         return $this->txHgonWorkgroupWgevent;
     }
 
-    public function setTxHgonWorkgroup(ObjectStorage $workGroups): void
+    public function setTxHgonWorkgroupWgevent(ObjectStorage $workGroups): void
     {
         $this->txHgonWorkgroupWgevent = $workGroups;
+    }
+
+    public function removeTxHgonWorkgroup(\HGON\HgonWorkgroup\Domain\Model\WorkGroup $workGroup): void
+    {
+        $this->removeTxHgonWorkgroupWgevent($workGroup);
+    }
+
+    public function getTxHgonWorkgroup(): ObjectStorage
+    {
+        return $this->getTxHgonWorkgroupWgevent();
+    }
+
+    public function setTxHgonWorkgroup(ObjectStorage $workGroups): void
+    {
+        $this->setTxHgonWorkgroupWgevent($workGroups);
     }
 
     public function getStart(): int

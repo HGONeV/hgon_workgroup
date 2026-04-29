@@ -1,6 +1,10 @@
 <?php
 
 namespace HGON\HgonWorkgroup\Domain\Model;
+use Mediadreams\MdNewsAuthor\Domain\Model\NewsAuthor;
+use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+
     /*
      * This file is part of the TYPO3 CMS project.
      *
@@ -25,11 +29,18 @@ namespace HGON\HgonWorkgroup\Domain\Model;
 class News extends \GeorgRinger\News\Domain\Model\News
 {
     /**
+     * @var ObjectStorage<NewsAuthor>
+     */
+    #[Lazy()]
+    protected ObjectStorage $newsAuthor;
+
+    /**
      * __construct
      */
     public function __construct()
     {
         parent::__construct();
+        $this->newsAuthor = new ObjectStorage();
         //Do not remove the next line: It would break the functionality
         $this->initStorageObjects();
     }
@@ -53,6 +64,29 @@ class News extends \GeorgRinger\News\Domain\Model\News
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonWorkgroup\Domain\Model\WorkGroup>
      */
     protected $txHgonWorkgroup = null;
+
+    public function addNewsAuthor(NewsAuthor $newsAuthor): void
+    {
+        $this->newsAuthor ??= new ObjectStorage();
+        $this->newsAuthor->attach($newsAuthor);
+    }
+
+    public function removeNewsAuthor(NewsAuthor $newsAuthorToRemove): void
+    {
+        $this->newsAuthor ??= new ObjectStorage();
+        $this->newsAuthor->detach($newsAuthorToRemove);
+    }
+
+    public function getNewsAuthor(): ObjectStorage
+    {
+        $this->newsAuthor ??= new ObjectStorage();
+        return $this->newsAuthor;
+    }
+
+    public function setNewsAuthor(ObjectStorage $newsAuthor): void
+    {
+        $this->newsAuthor = $newsAuthor;
+    }
 
     /**
      * Adds a $txHgonWorkgroup

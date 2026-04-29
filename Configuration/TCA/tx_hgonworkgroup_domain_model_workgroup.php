@@ -228,8 +228,8 @@ return [
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectMultipleSideBySide',
-                'foreign_table' => 'tx_rkwauthors_domain_model_authors',
-                'foreign_table_where' => 'AND tx_rkwauthors_domain_model_authors.deleted = 0 AND tx_rkwauthors_domain_model_authors.hidden = 0 ORDER BY tx_rkwauthors_domain_model_authors.last_name ASC',
+                'foreign_table' => 'tx_mdnewsauthor_domain_model_newsauthor',
+                'foreign_table_where' => 'AND tx_mdnewsauthor_domain_model_newsauthor.deleted = 0 AND tx_mdnewsauthor_domain_model_newsauthor.hidden = 0 ORDER BY tx_mdnewsauthor_domain_model_newsauthor.lastname ASC, tx_mdnewsauthor_domain_model_newsauthor.firstname ASC',
                 'maxitems'      => 3,
                 'minitems' 		=> 0,
                 'size'          => 5,

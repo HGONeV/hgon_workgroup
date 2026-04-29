@@ -106,11 +106,11 @@
                 <target>Zugeordnete Arbeitsgruppe(n)</target>
             </trans-unit>
 
-            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgon_workgroup_wgevent">
+            <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgon_workgroup_wgevent">
                 <source>Workgroup</source>
                 <target>Zugeordnete Arbeitsgruppe(n) zu Workgroup-Event</target>
             </trans-unit>
-            <trans-unit id="tx_rkwevents_domain_model_event.tx_hgon_workgroup_stdevent">
+            <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgon_workgroup_stdevent">
                 <source>Workgroup</source>
                 <target>Zugeordnete Arbeitsgruppe(n) zu Standard-Event</target>
             </trans-unit>

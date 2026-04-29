@@ -4,7 +4,7 @@ defined('TYPO3') or die("Access denied.");
 $tempColumns = [
     "tx_hgon_workgroup_wgevent" => [
         "exclude" => 1,
-        "label" => "LLL:EXT:hgon_workgroup/Resources/Private/Language/locallang_db.xlf:tx_rkwevents_domain_model_event.tx_hgon_workgroup_wgevent",
+        "label" => "LLL:EXT:hgon_workgroup/Resources/Private/Language/locallang_db.xlf:tx_sfeventmgt_domain_model_event.tx_hgon_workgroup_wgevent",
         "config" => [
             'type' => 'select',
             'renderType' => 'selectMultipleSideBySide',
@@ -17,7 +17,7 @@ $tempColumns = [
     ],
     "tx_hgon_workgroup_stdevent" => [
         "exclude" => 1,
-        "label" => "LLL:EXT:hgon_workgroup/Resources/Private/Language/locallang_db.xlf:tx_rkwevents_domain_model_event.tx_hgon_workgroup_stdevent",
+        "label" => "LLL:EXT:hgon_workgroup/Resources/Private/Language/locallang_db.xlf:tx_sfeventmgt_domain_model_event.tx_hgon_workgroup_stdevent",
         "config" => [
             'type' => 'select',
             'renderType' => 'selectMultipleSideBySide',

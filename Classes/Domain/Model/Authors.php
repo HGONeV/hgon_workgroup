@@ -2,6 +2,9 @@
 
 namespace HGON\HgonWorkgroup\Domain\Model;
 
+use Mediadreams\MdNewsAuthor\Domain\Model\NewsAuthor;
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
+
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -23,7 +26,67 @@ namespace HGON\HgonWorkgroup\Domain\Model;
  * @package HGON_HgonTemplate
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  */
-class Authors extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Authors extends NewsAuthor
 {
+    protected string $phone2 = '';
 
+    public function getFirstName(): string
+    {
+        return $this->getFirstname();
+    }
+
+    public function setFirstName(string $firstName): void
+    {
+        $this->setFirstname($firstName);
+    }
+
+    public function getLastName(): string
+    {
+        return $this->getLastname();
+    }
+
+    public function setLastName(string $lastName): void
+    {
+        $this->setLastname($lastName);
+    }
+
+    public function getFunctionTitle(): string
+    {
+        return $this->getPosition();
+    }
+
+    public function setFunctionTitle(string $functionTitle): void
+    {
+        $this->setPosition($functionTitle);
+    }
+
+    public function getFunctionDescription(): string
+    {
+        return $this->getBio();
+    }
+
+    public function setFunctionDescription(string $functionDescription): void
+    {
+        $this->setBio($functionDescription);
+    }
+
+    public function getImageBoxes(): ?FileReference
+    {
+        return $this->getImage();
+    }
+
+    public function setImageBoxes(?FileReference $imageBoxes): void
+    {
+        $this->setImage($imageBoxes);
+    }
+
+    public function getPhone2(): string
+    {
+        return $this->phone2;
+    }
+
+    public function setPhone2(string $phone2): void
+    {
+        $this->phone2 = $phone2;
+    }
 }

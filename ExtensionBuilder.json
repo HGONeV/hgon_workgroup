@@ -116,7 +116,7 @@
                 "relationGroup": {
                     "relations": [
                         {
-                            "foreignRelationClass": "\\RKW\\RkwAuthors\\Domain\\Model\\Authors",
+                            "foreignRelationClass": "\\HGON\\HgonWorkgroup\\Domain\\Model\\Authors",
                             "lazyLoading": true,
                             "propertyIsExcludeField": true,
                             "relationDescription": "",
@@ -127,7 +127,7 @@
                             "uid": "131995965136"
                         },
                         {
-                            "foreignRelationClass": "\\RKW\\RkwEvents\\Domain\\Model\\Event",
+                            "foreignRelationClass": "\\HGON\\HgonWorkgroup\\Domain\\Model\\Event",
                             "lazyLoading": true,
                             "propertyIsExcludeField": true,
                             "relationDescription": "",
