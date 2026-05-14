@@ -11,6 +11,10 @@
             <p>{workGroup.shortDescription}</p>
             <p><f:format.html>{workGroup.description}</f:format.html></p>
 
+            <f:if condition="{eventList}">
+                <h5>Anstehende Veranstaltungen</h5>
+                <f:render partial="WorkGroup/Events" arguments="{eventList: eventList, settings: settings}" />
+            </f:if>
 
 
             <f:if condition="<f:count>{workGroup.files}</f:count>">

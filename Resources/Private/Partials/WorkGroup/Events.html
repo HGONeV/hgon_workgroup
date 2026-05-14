@@ -7,41 +7,46 @@
 
 <f:if condition="{workgroup:checkDateOfEventList(eventList: eventList)}">
     <f:then>
-        <div class="box__content">
-            <div class="flex-container space-between gutter">
-                <!-- further boxes with events -->
-                <f:for each="{hgon:createRows(list: {0: eventList}, itemsPerRow: 2)}" as="row" iteration="iter">
-                    <f:comment><!-- maximum one row --></f:comment>
-                    <f:if condition="{iter.isFirst}">
-                        <f:for each="{row}" as="event">
-                            <div class="flex-item c-<f:cObject typoscriptObjectPath='lib.math' data='12/<f:count>{row}</f:count>' />">
-                                <article class="item item-event">
-                                    <header class="item__header">
-                                        <svg width="48" height="48"><use xlink:href="#ui-event"></use></svg>
-                                        <time datetime="{event.startdate -> f:format.date(format:'Y-m-d')}">{event.startdate -> f:format.date(format:'d.m.Y')}</time>
-                                        <span class="">
-                                            <f:if condition="{event.location.city}">
-                                                <f:then>{event.location.city}</f:then>
-                                                <f:else>Online</f:else>
-                                            </f:if>
-                                        </span>
-                                    </header>
-
-                                    <div class="item__content">
-                                        <h3>{event.title}</h3>
-                                    </div>
-
-                                    <footer class="item__footer">
-                                        <f:link.action action="detail" controller="Event" pluginName="Pieventdetail" extensionName="SfEventMgt" pageUid="{settings.event.showPid}" arguments="{event: event}" class="link link--goto" title="{event.title}">
-                                            Details
-                                        </f:link.action>
-                                    </footer>
-                                </article>
+        <div id="tx-rkwevents-grid-section-workgroup">
+            <!-- further boxes with events -->
+            <f:for each="{eventList}" as="event">
+                <article class="textbox textbox--toggle / mb-1 / color-bg-light">
+                    <div class="flex-container gutter">
+                        <div class="flex-item align-center align-item-center c-2">
+                            <svg width="48" height="48"><use xlink:href="#ui-event"></use></svg><br>
+                            <strong>
+                                <f:format.date format="d.m.">{event.startdate}</f:format.date>
+                            </strong>
+                        </div>
+                        <div class="flex-item c-10">
+                            <header class="textbox__header">
+                                <h5 class="textbox__headline">{event.title}</h5>
+                                <span class="textbox__subline">
+                                    <strong>
+                                        <time datetime="{event.startdate -> f:format.date(format: 'd-m-Y H:i')}"><f:format.date format="d.m.Y H:i">{event.startdate}</f:format.date></time>
+                                    </strong>
+                                    <f:if condition="{event.location.city}">
+                                        <f:then> · {event.location.city}</f:then>
+                                        <f:else> · Online</f:else>
+                                    </f:if>
+                                </span>
+                            </header>
+                            <div class="textbox__content">
+                                <f:if condition="{event.teaser}">
+                                    <f:format.crop maxCharacters="250">
+                                        <f:format.stripTags>{event.teaser}</f:format.stripTags>
+                                    </f:format.crop>
+                                </f:if>
                             </div>
-                        </f:for>
-                    </f:if>
-                </f:for>
-            </div>
+                            <footer class="textbox__footer">
+                                <f:link.action action="detail" controller="Event" pluginName="Pieventdetail" extensionName="SfEventMgt" pageUid="{settings.event.showPid}" arguments="{event: event}" class="btn btn--primary-outline btn--rounded" title="{event.title}">
+                                    Mehr erfahren
+                                </f:link.action>
+                            </footer>
+                        </div>
+                    </div>
+                </article>
+            </f:for>
         </div>
     </f:then>
     <f:else>

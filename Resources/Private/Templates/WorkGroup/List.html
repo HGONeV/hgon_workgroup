@@ -25,11 +25,9 @@
             <div id="tx-hgonworkgroup-listing">
                 <f:then>
                     <div class="flex-container space-between gutter valign-stretch">
-                        <f:for each="{workGroupList}" as="workGroup" iteration="iter">
-                            <f:for each="<hgon:createRows list='{0: workGroupList}' />" as="row">
-                                <f:for each="{row}" as="workGroup">
-                                    <f:render partial="WorkGroup/ListItem" arguments="{_all}" />
-                                </f:for>
+                        <f:for each="{hgon:createRows(list: {0: workGroupList}, itemsPerRow: 2)}" as="row">
+                            <f:for each="{row}" as="workGroup">
+                                <f:render partial="WorkGroup/ListItem" arguments="{workGroup: workGroup, settings: settings, type: 'c-6'}" />
                             </f:for>
                         </f:for>
                     </div>

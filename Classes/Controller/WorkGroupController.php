@@ -95,6 +95,7 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     public function showAction(\HGON\HgonWorkgroup\Domain\Model\WorkGroup $workGroup)
     {
         $this->view->assign('workGroup', $workGroup);
+        $this->view->assign('eventList', $this->getRelatedEvents($workGroup));
 
         return $this->htmlResponse();
     }
@@ -177,5 +178,34 @@ class WorkGroupController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionContro
     protected function getHgonTemplateSettings($which = ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS)
     {
         return Common::getTyposcriptConfiguration('Hgontemplate', $which);
+    }
+
+    /**
+     * @return array<int, \HGON\HgonWorkgroup\Domain\Model\Event>
+     */
+    protected function getRelatedEvents(\HGON\HgonWorkgroup\Domain\Model\WorkGroup $workGroup): array
+    {
+        $events = [];
+
+        foreach ([$workGroup->getWgEvent(), $workGroup->getStdEvent()] as $eventStorage) {
+            if (!$eventStorage instanceof \Traversable) {
+                continue;
+            }
+
+            foreach ($eventStorage as $event) {
+                if (!$event instanceof \HGON\HgonWorkgroup\Domain\Model\Event) {
+                    continue;
+                }
+                $events[$event->getUid()] = $event;
+            }
+        }
+
+        uasort(
+            $events,
+            static fn(\HGON\HgonWorkgroup\Domain\Model\Event $a, \HGON\HgonWorkgroup\Domain\Model\Event $b): int
+                => ($a->getStartdate()?->getTimestamp() ?? 0) <=> ($b->getStartdate()?->getTimestamp() ?? 0)
+        );
+
+        return array_values($events);
     }
 }
