@@ -14,7 +14,6 @@ $tempColumns = [
             'MM_opposite_field' => 'tx_hgon_workgroup',
             'maxitems' => 9999,
             'minitems' => 0,
-            'multiple' => 1,
         ]
     ],
 ];
