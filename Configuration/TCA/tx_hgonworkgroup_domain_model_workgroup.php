@@ -23,7 +23,7 @@ return [
     'types' => [
         '1' => [
             'showitem' => '
-            sys_language_uid, l10n_diffsource, hidden, image, files, title, description, short_description, address, zip, city, district, bank_institute, bank_iban, bank_bic, contact_person,
+            sys_language_uid, l10n_diffsource, hidden, image, files, title, slug, description, short_description, address, zip, city, district, bank_institute, bank_iban, bank_bic, contact_person,
             --div--;LLL:EXT:hgon_workgroup/Resources/Private/Language/locallang_db.xlf:tx_hgonworkgroup_domain_model_workgroup.tab_stdevents,
             std_event,
             --div--;LLL:EXT:hgon_workgroup/Resources/Private/Language/locallang_db.xlf:tx_hgonworkgroup_domain_model_workgroup.tab_wgevents,
@@ -92,6 +92,24 @@ return [
                 'type' => 'input',
                 'size' => 30,
                 'eval' => 'trim'
+            ],
+        ],
+        'slug' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:pages.slug',
+            'displayCond' => 'VERSION:IS:false',
+            'config' => [
+                'type' => 'slug',
+                'size' => 50,
+                'generatorOptions' => [
+                    'fields' => ['title'],
+                    'replacements' => [
+                        '/' => '-',
+                    ],
+                ],
+                'fallbackCharacter' => '-',
+                'eval' => 'uniqueInPid',
+                'default' => '',
             ],
         ],
         'description' => [

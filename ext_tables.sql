@@ -7,6 +7,7 @@ CREATE TABLE tx_hgonworkgroup_domain_model_workgroup (
 	pid int(11) DEFAULT '0' NOT NULL,
 
 	title varchar(255) DEFAULT '' NOT NULL,
+	slug varchar(2048) DEFAULT '' NOT NULL,
 	description text,
 	short_description varchar(255) DEFAULT '' NOT NULL,
 	address varchar(255) DEFAULT '' NOT NULL,

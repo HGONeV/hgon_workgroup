@@ -27,6 +27,11 @@ class WorkGroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $title = '';
 
     /**
+     * URL segment used by the workgroup detail route.
+     */
+    protected string $slug = '';
+
+    /**
      * description
      *
      * @var string
@@ -185,6 +190,16 @@ class WorkGroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setTitle($title)
     {
         $this->title = $title;
+    }
+
+    public function getSlug(): string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): void
+    {
+        $this->slug = $slug;
     }
 
     /**
