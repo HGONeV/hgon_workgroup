@@ -22,6 +22,7 @@ CREATE TABLE tx_hgonworkgroup_domain_model_workgroup (
     image int(11) unsigned NOT NULL default '0',
     files int(11) unsigned NOT NULL default '0',
 	contact_person int(11) unsigned DEFAULT '0' NOT NULL,
+	# Legacy relation counters; kept until all installations have run the event relation migration.
 	wg_event text,
 	std_event text,
 	tx_news int(11) DEFAULT '0' NOT NULL,
@@ -58,6 +59,8 @@ CREATE TABLE tx_hgonworkgroup_domain_model_workgroup (
 # Table structure for table 'tx_sfeventmgt_domain_model_event'
 #
 CREATE TABLE tx_sfeventmgt_domain_model_event (
+    tx_hgon_workgroup text,
+    # Legacy fields; their values are merged into tx_hgon_workgroup by the upgrade wizard.
     tx_hgon_workgroup_stdevent text,
 	tx_hgon_workgroup_wgevent text
 );

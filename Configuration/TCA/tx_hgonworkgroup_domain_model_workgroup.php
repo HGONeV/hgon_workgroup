@@ -17,17 +17,13 @@ return [
         'enablecolumns' => [
             'disabled' => 'hidden',
         ],
-        'searchFields' => 'title,description,short_description,address,zip,city,district,bank_institute,bank_iban,bank_bic,image,files,contact_person,wg_event,std_event,tx_news',
+        'searchFields' => 'title,description,short_description,address,zip,city,district,bank_institute,bank_iban,bank_bic,image,files,contact_person,tx_news',
         'iconfile' => 'EXT:hgon_workgroup/Resources/Public/Icons/tx_hgonworkgroup_domain_model_workgroup.gif'
     ],
     'types' => [
         '1' => [
             'showitem' => '
             sys_language_uid, l10n_diffsource, hidden, image, files, title, slug, description, short_description, address, zip, city, district, bank_institute, bank_iban, bank_bic, contact_person,
-            --div--;LLL:EXT:hgon_workgroup/Resources/Private/Language/locallang_db.xlf:tx_hgonworkgroup_domain_model_workgroup.tab_stdevents,
-            std_event,
-            --div--;LLL:EXT:hgon_workgroup/Resources/Private/Language/locallang_db.xlf:tx_hgonworkgroup_domain_model_workgroup.tab_wgevents,
-            wg_event,
              --div--;LLL:EXT:hgon_workgroup/Resources/Private/Language/locallang_db.xlf:tx_hgonworkgroup_domain_model_workgroup.tab_news,
             tx_news
             '
@@ -253,32 +249,6 @@ return [
                 'size'          => 5,
             ],
 
-        ],
-        'wg_event' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:hgon_workgroup/Resources/Private/Language/locallang_db.xlf:tx_hgonworkgroup_domain_model_workgroup.event',
-            'config' => [
-                'type' => 'select',
-                'renderType' => 'selectMultipleSideBySide',
-                'foreign_table' => 'tx_sfeventmgt_domain_model_event',
-                'foreign_table_where' => 'AND tx_sfeventmgt_domain_model_event.deleted = 0 AND tx_sfeventmgt_domain_model_event.hidden = 0 ORDER BY tx_sfeventmgt_domain_model_event.startdate ASC, tx_sfeventmgt_domain_model_event.title ASC',
-                'maxitems' => 9999,
-                'minitems' => 0,
-                'size' => 10,
-            ],
-        ],
-        'std_event' => [
-            'exclude' => true,
-            'label' => 'LLL:EXT:hgon_workgroup/Resources/Private/Language/locallang_db.xlf:tx_hgonworkgroup_domain_model_workgroup.event',
-            'config' => [
-                'type' => 'select',
-                'renderType' => 'selectMultipleSideBySide',
-                'foreign_table' => 'tx_sfeventmgt_domain_model_event',
-                'foreign_table_where' => 'AND tx_sfeventmgt_domain_model_event.deleted = 0 AND tx_sfeventmgt_domain_model_event.hidden = 0 ORDER BY tx_sfeventmgt_domain_model_event.startdate ASC, tx_sfeventmgt_domain_model_event.title ASC',
-                'maxitems' => 9999,
-                'minitems' => 0,
-                'size' => 10,
-            ],
         ],
         /*
         'tx_news' => [

@@ -119,24 +119,6 @@ class WorkGroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $contactPerson = null;
 
     /**
-     * wgEvent
-     * (workGroupEvent)
-     *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonWorkgroup\Domain\Model\Event>
-     */
-    #[Cascade(['value' => 'remove'])]
-    protected $wgEvent = null;
-
-    /**
-     * stdEvent
-     * (standardEvent)
-     *
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonWorkgroup\Domain\Model\Event>
-     */
-    #[Cascade(['value' => 'remove'])]
-    protected $stdEvent = null;
-
-    /**
      * txNews
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonWorkgroup\Domain\Model\News>
@@ -165,8 +147,6 @@ class WorkGroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected function initStorageObjects()
     {
         $this->contactPerson = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-        $this->wgEvent = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
-        $this->stdEvent = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->txNews = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->files = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
@@ -481,92 +461,6 @@ class WorkGroup extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setContactPerson(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $contactPerson)
     {
         $this->contactPerson = $contactPerson;
-    }
-
-    /**
-     * Adds a wgEvent
-     *
-     * @param \HGON\HgonWorkgroup\Domain\Model\Event $wgEvent
-     * @return void
-     */
-    public function addWgEvent(\HGON\HgonWorkgroup\Domain\Model\Event $wgEvent)
-    {
-        $this->wgEvent->attach($wgEvent);
-    }
-
-    /**
-     * Removes a wgEvent
-     *
-     * @param \HGON\HgonWorkgroup\Domain\Model\Event $wgEventToRemove The Event to be removed
-     * @return void
-     */
-    public function removeWgEvent(\HGON\HgonWorkgroup\Domain\Model\Event $wgEventToRemove)
-    {
-        $this->wgEvent->detach($wgEventToRemove);
-    }
-
-    /**
-     * Returns the wgEvent
-     *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonWorkgroup\Domain\Model\Event> $wgEvent
-     */
-    public function getWgEvent()
-    {
-        return $this->wgEvent;
-    }
-
-    /**
-     * Sets the wgEvent
-     *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonWorkgroup\Domain\Model\Event> $wgEvent
-     * @return void
-     */
-    public function setWgEvent(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $wgEvent)
-    {
-        $this->wgEvent = $wgEvent;
-    }
-
-    /**
-     * Adds a stdEvent
-     *
-     * @param \HGON\HgonWorkgroup\Domain\Model\Event $stdEvent
-     * @return void
-     */
-    public function addStdEvent(\HGON\HgonWorkgroup\Domain\Model\Event $stdEvent)
-    {
-        $this->stdEvent->attach($stdEvent);
-    }
-
-    /**
-     * Removes a stdEvent
-     *
-     * @param \HGON\HgonWorkgroup\Domain\Model\Event $stdEventToRemove The Event to be removed
-     * @return void
-     */
-    public function removeStdEvent(\HGON\HgonWorkgroup\Domain\Model\Event $stdEventToRemove)
-    {
-        $this->stdEvent->detach($stdEventToRemove);
-    }
-
-    /**
-     * Returns the stdEvent
-     *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonWorkgroup\Domain\Model\Event> $stdEvent
-     */
-    public function getStdEvent()
-    {
-        return $this->stdEvent;
-    }
-
-    /**
-     * Sets the stdEvent
-     *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\HGON\HgonWorkgroup\Domain\Model\Event> $stdEvent
-     * @return void
-     */
-    public function setStdEvent(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $stdEvent)
-    {
-        $this->stdEvent = $stdEvent;
     }
 
     /**

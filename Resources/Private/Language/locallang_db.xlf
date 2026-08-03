@@ -81,11 +81,8 @@
                 <source>Workgroup</source>
             </trans-unit>
 
-            <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgon_workgroup_wgevent">
-                <source>Workgroup</source>
-            </trans-unit>
-            <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgon_workgroup_stdevent">
-                <source>Workgroup</source>
+            <trans-unit id="tx_sfeventmgt_domain_model_event.tx_hgon_workgroup">
+                <source>Assigned workgroup(s)</source>
             </trans-unit>
 
              <!-- FLEXFORM -->

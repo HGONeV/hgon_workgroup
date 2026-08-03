@@ -9,73 +9,32 @@ class Event extends \DERHANSEN\SfEventMgt\Domain\Model\Event
     /**
      * @var ObjectStorage<\HGON\HgonWorkgroup\Domain\Model\WorkGroup>
      */
-    protected ObjectStorage $txHgonWorkgroupStdevent;
-
-    /**
-     * @var ObjectStorage<\HGON\HgonWorkgroup\Domain\Model\WorkGroup>
-     */
-    protected ObjectStorage $txHgonWorkgroupWgevent;
+    protected ObjectStorage $txHgonWorkgroup;
 
     public function initializeObject(): void
     {
         parent::initializeObject();
-        $this->txHgonWorkgroupStdevent = new ObjectStorage();
-        $this->txHgonWorkgroupWgevent = new ObjectStorage();
+        $this->txHgonWorkgroup = new ObjectStorage();
     }
 
-    public function addTxHgonWorkgroupStdevent(\HGON\HgonWorkgroup\Domain\Model\WorkGroup $workGroup): void
+    public function addTxHgonWorkgroup(\HGON\HgonWorkgroup\Domain\Model\WorkGroup $workGroup): void
     {
-        $this->txHgonWorkgroupStdevent->attach($workGroup);
-    }
-
-    public function removeTxHgonWorkgroupStdevent(\HGON\HgonWorkgroup\Domain\Model\WorkGroup $workGroup): void
-    {
-        $this->txHgonWorkgroupStdevent->detach($workGroup);
-    }
-
-    public function getTxHgonWorkgroupStdevent(): ObjectStorage
-    {
-        return $this->txHgonWorkgroupStdevent;
-    }
-
-    public function setTxHgonWorkgroupStdevent(ObjectStorage $workGroups): void
-    {
-        $this->txHgonWorkgroupStdevent = $workGroups;
-    }
-
-    public function addTxHgonWorkgroupWgevent(\HGON\HgonWorkgroup\Domain\Model\WorkGroup $workGroup): void
-    {
-        $this->txHgonWorkgroupWgevent->attach($workGroup);
-    }
-
-    public function removeTxHgonWorkgroupWgevent(\HGON\HgonWorkgroup\Domain\Model\WorkGroup $workGroup): void
-    {
-        $this->txHgonWorkgroupWgevent->detach($workGroup);
-    }
-
-    public function getTxHgonWorkgroupWgevent(): ObjectStorage
-    {
-        return $this->txHgonWorkgroupWgevent;
-    }
-
-    public function setTxHgonWorkgroupWgevent(ObjectStorage $workGroups): void
-    {
-        $this->txHgonWorkgroupWgevent = $workGroups;
+        $this->txHgonWorkgroup->attach($workGroup);
     }
 
     public function removeTxHgonWorkgroup(\HGON\HgonWorkgroup\Domain\Model\WorkGroup $workGroup): void
     {
-        $this->removeTxHgonWorkgroupWgevent($workGroup);
+        $this->txHgonWorkgroup->detach($workGroup);
     }
 
     public function getTxHgonWorkgroup(): ObjectStorage
     {
-        return $this->getTxHgonWorkgroupWgevent();
+        return $this->txHgonWorkgroup;
     }
 
     public function setTxHgonWorkgroup(ObjectStorage $workGroups): void
     {
-        $this->setTxHgonWorkgroupWgevent($workGroups);
+        $this->txHgonWorkgroup = $workGroups;
     }
 
     public function getStart(): int

@@ -20,6 +20,11 @@
                         </div>
                         <div class="flex-item c-10">
                             <header class="textbox__header">
+                                <f:for each="{event.categories}" as="category">
+                                    <f:if condition="{category.uid} == 105">
+                                        <span class="badge badge--secondary">Arbeitskreistreffen<span class="is-hidden">: </span></span>
+                                    </f:if>
+                                </f:for>
                                 <h5 class="textbox__headline">{event.title}</h5>
                                 <span class="textbox__subline">
                                     <strong>

@@ -2,6 +2,10 @@
 
 namespace HGON\HgonWorkgroup\Domain\Repository;
 
+use HGON\HgonWorkgroup\Domain\Model\WorkGroup;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -26,6 +30,17 @@ namespace HGON\HgonWorkgroup\Domain\Repository;
  */
 class EventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
+    /**
+     * @return QueryResultInterface<\HGON\HgonWorkgroup\Domain\Model\Event>
+     */
+    public function findByWorkGroup(WorkGroup $workGroup): QueryResultInterface
+    {
+        $query = $this->createQuery();
+        // The workgroup plugin uses PID 42, while sf_event_mgt records live on PID 37.
+        $query->getQuerySettings()->setRespectStoragePage(false);
+        $query->matching($query->contains('txHgonWorkgroup', $workGroup));
+        $query->setOrderings(['startdate' => QueryInterface::ORDER_ASCENDING]);
 
-
+        return $query->execute();
+    }
 }
