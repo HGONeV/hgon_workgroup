@@ -38,7 +38,16 @@ class EventRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         $query = $this->createQuery();
         // The workgroup plugin uses PID 42, while sf_event_mgt records live on PID 37.
         $query->getQuerySettings()->setRespectStoragePage(false);
-        $query->matching($query->contains('txHgonWorkgroup', $workGroup));
+        $currentDateTime = new \DateTime();
+        $query->matching(
+            $query->logicalAnd(
+                $query->contains('txHgonWorkgroup', $workGroup),
+                $query->logicalOr(
+                    $query->greaterThan('startdate', $currentDateTime),
+                    $query->greaterThanOrEqual('enddate', $currentDateTime),
+                ),
+            ),
+        );
         $query->setOrderings(['startdate' => QueryInterface::ORDER_ASCENDING]);
 
         return $query->execute();
